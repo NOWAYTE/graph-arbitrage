@@ -1,0 +1,59 @@
+name: Deploy Fetch Data Lambda
+
+on:
+  push:
+    paths:
+      - 'lambda-fetch-data/**'
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+  LAMBDA_FUNCTION_NAME: fetch-fx-data  # Your existing function name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Validate Lambda function exists
+      run: |
+        aws lambda get-function --function-name $LAMBDA_FUNCTION_NAME
+      continue-on-error: false
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies and package
+      run: |
+        cd lambda-fetch-data
+        pip install -r requirements.txt -t ./src
+        cd src
+        zip -r ../deployment-package.zip .
+
+    - name: Update Lambda function code
+      run: |
+        aws lambda update-function-code \
+          --function-name $LAMBDA_FUNCTION_NAME \
+          --zip-file fileb://lambda-fetch-data/deployment-package.zip
+
+    - name: Run integration test
+      run: |
+        aws lambda invoke \
+          --function-name $LAMBDA_FUNCTION_NAME \
+          --payload '{"test": true}' \
+          response.json
+        echo "Lambda response:"
+        cat response.json
