@@ -1,3 +1,4 @@
+import json
 import boto3
 import yfinance as yf
 import pandas as pd
