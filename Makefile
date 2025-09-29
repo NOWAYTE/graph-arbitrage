@@ -1,7 +1,7 @@
 # Project variables
 PROJECT_ROOT := $(CURDIR)
-OUTPUT_DIR := $(PROJECT_ROOT)/output
-ZIP_FILE := $(OUTPUT_DIR)/deployment-package.zip
+DIST_DIR := $(PROJECT_ROOT)/lambda-fetch-data/dist
+ZIP_FILE := $(DIST_DIR)/deployment-package.zip
 S3_BUCKET := graph-arbitrage-lambda-deployments-852815611756
 FUNCTION_NAME := fetch-fx-data
 TIMESTAMP := $(shell date +%s)
@@ -11,15 +11,14 @@ S3_KEY := fetch-fx-data/deployment-package-$(TIMESTAMP).zip
 
 # Clean old builds
 clean:
-	rm -rf $(OUTPUT_DIR)
+	rm -rf $(DIST_DIR)
 
-# Build deployment package inside Docker
 # Build deployment package inside Docker
 build: clean
 	@echo "=== Building Lambda package in Docker ==="
+	mkdir -p $(DIST_DIR)
 	docker build -t lambda-builder $(PROJECT_ROOT)/lambda-fetch-data
-	mkdir -p $(OUTPUT_DIR)
-	docker run --rm -v $(OUTPUT_DIR):/out --entrypoint "" lambda-builder \
+	docker run --rm -v $(DIST_DIR):/out --entrypoint "" lambda-builder \
 		cp /app/deployment-package.zip /out/
 	@echo "=== Build complete: $(ZIP_FILE) ==="
 

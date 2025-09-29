@@ -15,7 +15,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -30,24 +30,24 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Build Lambda package with Docker
+    - name: Build Lambda package with Docker (volume approach)
       run: |
         cd lambda-fetch-data
+        mkdir -p dist
         docker build -t lambda-builder .
-        docker create --name lambda-container lambda-builder
-        docker cp lambda-container:/asset/deployment-package.zip ./
-        docker rm lambda-container
-        ls -la
+        docker run --rm -v $(pwd)/dist:/out --entrypoint "" lambda-builder \
+          cp /app/deployment-package.zip /out/
+        ls -la dist
 
     - name: Upload to S3 and update Lambda
       run: |
         cd lambda-fetch-data
         TIMESTAMP=$(date +%s)
         S3_KEY="fetch-fx-data/deployment-package-${TIMESTAMP}.zip"
-        
+
         # Upload to S3
-        aws s3 cp deployment-package.zip "s3://${S3_DEPLOY_BUCKET}/${S3_KEY}"
-        
+        aws s3 cp dist/deployment-package.zip "s3://${S3_DEPLOY_BUCKET}/${S3_KEY}"
+
         # Update Lambda function
         aws lambda update-function-code \
           --function-name $LAMBDA_FUNCTION_NAME \
@@ -55,8 +55,7 @@ jobs:
           --s3-key $S3_KEY
 
     - name: Wait for update to complete
-      run: |
-        sleep 10
+      run: sleep 10
 
     - name: Test Lambda function
       run: |
@@ -67,8 +66,7 @@ jobs:
           response.json
         echo "Lambda response:"
         cat response.json
-        
-        # Check if the invocation was successful
+
         if [ $? -eq 0 ]; then
           echo "✅ Lambda test passed"
         else
@@ -80,3 +78,4 @@ jobs:
       run: |
         echo "Checking for new data in S3:"
         aws s3 ls s3://graph-arbitrage-raw-data-se/ --recursive
+
