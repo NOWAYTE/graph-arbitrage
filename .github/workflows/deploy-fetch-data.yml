@@ -10,7 +10,7 @@ on:
 env:
   AWS_REGION: us-east-1
   LAMBDA_FUNCTION_NAME: fetch-fx-data
-  S3_DEPLOY_BUCKET: graph-arbitrage-lambda-852815611756
+  S3_DEPLOY_BUCKET: graph-arbitrage-lambda-deployments-852815611756
 
 jobs:
   deploy:
