@@ -1,9 +1,9 @@
-FROM public.ecr.aws/lambda/python:3.10
-
+FROM python:3.10-slim
 
 WORKDIR /app
 
-RUN yum install -y zip
+# Install zip utility (much faster on Ubuntu)
+RUN apt-get update && apt-get install -y zip && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first (for Docker caching)
 COPY requirements.txt .
@@ -15,6 +15,6 @@ RUN pip install -r requirements.txt -t .
 # Copy Lambda code
 COPY src/ .
 
-# Zip everything into a deployment package
-RUN zip -r9 /app/deployment-package.zip .
+# Create the deployment package in the expected location
+RUN mkdir -p /asset && zip -r9 /asset/deployment-package.zip .
 
