@@ -2,3 +2,4 @@
 lambda-fetch-data/package/*
 deployment-package.zip
 awscliv2.zip
+aws/
