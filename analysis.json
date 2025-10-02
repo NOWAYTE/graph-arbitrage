@@ -1,0 +1,43 @@
+{
+  "processing_timestamp": "2025-10-02T12:17:43.017524",
+  "source_file": "fx/2025-09-28_forex_rates.csv",
+  "date": "2025-09-28",
+  "currency_values": {
+    "AUD": 1.5880196524347499,
+    "CAD": 1.7424589407998436,
+    "EUR": 2.8330732267302956,
+    "GBP": 3.2396601092922443,
+    "JPY": 0.016209434384544273,
+    "USD": 2.429161923623363
+  },
+  "arbitrage_opportunities": [],
+  "summary_stats": {
+    "total_pairs": 5,
+    "currencies_covered": 6,
+    "opportunities_found": 0,
+    "average_rate": 30.878404474258424,
+    "rate_std_dev": 66.51413118659407
+  },
+  "raw_data_sample": [
+    {
+      "pair": "USDEUR=X",
+      "rate": 0.8574299812316895
+    },
+    {
+      "pair": "USDJPY=X",
+      "rate": 149.86099243164062
+    },
+    {
+      "pair": "USDGBP=X",
+      "rate": 0.7498199939727783
+    },
+    {
+      "pair": "USDAUD=X",
+      "rate": 1.5296800136566162
+    },
+    {
+      "pair": "USDCAD=X",
+      "rate": 1.3940999507904053
+    }
+  ]
+}

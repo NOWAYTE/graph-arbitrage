@@ -1,6 +1,7 @@
 .github/*
 lambda-fetch-data/package/*
 lambda-fetch-data/dist/
+lambda-process-data/dist/
 deployment-package.zip
 awscliv2.zip
 aws/
