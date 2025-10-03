@@ -15,7 +15,6 @@ dynamodb = boto3.resource('dynamodb')
 RAW_BUCKET = 'graph-arbitrage-raw-data-se'
 PROCESSED_BUCKET = 'graph-arbitrage-processed-data-se'
 
-
 def calculate_currency_values(fx_rates_df):
     try:
         currencies = set()
@@ -71,7 +70,6 @@ def calculate_currency_values(fx_rates_df):
         logger.error(f"Error calculating currency values: {str(e)}")
         raise
 
-
 def detect_arbitrage_opportunities(fx_rates_df, currency_values):
     opportunities = []
     try:
@@ -102,9 +100,63 @@ def detect_arbitrage_opportunities(fx_rates_df, currency_values):
         logger.error(f"Error detecting arbitrage: {str(e)}")
         raise
 
+def process_historical_data(historical_data):
+    """Process multiple days of historical data for GNN training"""
+    processed_days = []
+    
+    # Get all unique dates from the first currency pair
+    first_pair = list(historical_data['fx_rates'].keys())[0]
+    all_dates = historical_data['fx_rates'][first_pair]['dates']
+    
+    logger.info(f"Processing {len(all_dates)} days of historical data")
+    
+    # Process each day
+    for day_index, date in enumerate(all_dates):
+        daily_rates = []
+        
+        # Collect rates for all pairs for this specific day
+        for pair, pair_data in historical_data['fx_rates'].items():
+            if day_index < len(pair_data['closes']):
+                daily_rates.append({
+                    'pair': pair,
+                    'rate': pair_data['closes'][day_index],
+                    'date': date
+                })
+        
+        # Only process days where we have sufficient data
+        if len(daily_rates) >= 10:  # At least 10 pairs
+            try:
+                df = pd.DataFrame(daily_rates)
+                currency_values = calculate_currency_values(df)
+                arbitrage_ops = detect_arbitrage_opportunities(df, currency_values)
+                
+                processed_day = {
+                    'date': date,
+                    'currency_values': currency_values,
+                    'arbitrage_opportunities': arbitrage_ops,
+                    'summary_stats': {
+                        'total_pairs': len(daily_rates),
+                        'currencies_covered': len(currency_values),
+                        'opportunities_found': len(arbitrage_ops),
+                        'average_rate': float(df['rate'].mean()),
+                        'rate_std_dev': float(df['rate'].std())
+                    },
+                    'raw_data_sample': df.head().to_dict('records')
+                }
+                processed_days.append(processed_day)
+                
+                logger.info(f"Processed day {date}: {len(arbitrage_ops)} opportunities")
+                
+            except Exception as e:
+                logger.error(f"Error processing day {date}: {str(e)}")
+                continue
+        else:
+            logger.warning(f"Skipping day {date}: insufficient data ({len(daily_rates)} pairs)")
+    
+    return processed_days
 
 def lambda_handler(event, context):
-    logger.info("Data processing")
+    logger.info("Data processing started")
     try:
         record = event['Records'][0]
         bucket = record['s3']['bucket']['name']
@@ -112,76 +164,110 @@ def lambda_handler(event, context):
 
         logger.info(f"Processing file s3://{bucket}/{key}")
 
-        response = s3_client.get_object(Bucket=bucket, Key=key)
-        csv_content = response['Body'].read().decode('utf-8')
-
-        fx_rates_df = pd.read_csv(io.StringIO(csv_content))
-        # Normalize column names to lowercase
-        fx_rates_df.columns = [c.strip().lower() for c in fx_rates_df.columns]
-
-        logger.info(f"Loaded {len(fx_rates_df)} currency pairs")
-
-        filename = key.split('/')[-1]
-        date_str = filename.split('_')[0]
-
-        currency_values = calculate_currency_values(fx_rates_df)
-        arbitrage_ops = detect_arbitrage_opportunities(fx_rates_df, currency_values)
-
-        processed_data = {
-            'processing_timestamp': datetime.utcnow().isoformat(),
-            'source_file': key,
-            'date': date_str,
-            'currency_values': currency_values,
-            'arbitrage_opportunities': arbitrage_ops,
-            'summary_stats': {
-                'total_pairs': len(fx_rates_df),
-                'currencies_covered': len(currency_values),
-                'opportunities_found': len(arbitrage_ops),
-                'average_rate': float(fx_rates_df['rate'].mean()),
-                'rate_std_dev': float(fx_rates_df['rate'].std())
-            },
-            'raw_data_sample': fx_rates_df.head().to_dict('records')
-        }
-
-        processed_key = f"processed/{date_str}/analysis.json"
-        s3_client.put_object(
-            Bucket=PROCESSED_BUCKET,
-            Key=processed_key,
-            Body=json.dumps(processed_data, indent=2),
-            ContentType='application/json'
-        )
-
-        currency_df = pd.DataFrame([{'currency': curr, 'value': val} for curr, val in currency_values.items()])
-        csv_output = currency_df.to_csv(index=False)
-        s3_client.put_object(
-            Bucket=PROCESSED_BUCKET,
-            Key=f"processed/{date_str}/currency_values.csv",
-            Body=csv_output,
-            ContentType='text/csv'
-        )
-
-        if arbitrage_ops:
-            arb_df = pd.DataFrame(arbitrage_ops)
-            arb_csv = arb_df.to_csv(index=False)
+        # Check if it's the new JSON format or old CSV format
+        if key.endswith('.json'):
+            # NEW: Process historical JSON data
+            response = s3_client.get_object(Bucket=bucket, Key=key)
+            json_content = response['Body'].read().decode('utf-8')
+            historical_data = json.loads(json_content)
+            
+            # Validate the new data structure
+            if 'fx_rates' not in historical_data or 'interest_rates' not in historical_data:
+                raise ValueError("Invalid JSON structure: missing fx_rates or interest_rates")
+            
+            # Process all historical days
+            processed_days = process_historical_data(historical_data)
+            
+            # Prepare output
+            filename = key.split('/')[-1]
+            date_str = filename.replace('fx_historical_', '').replace('.json', '')
+            
+            processed_data = {
+                'processing_timestamp': datetime.utcnow().isoformat(),
+                'source_file': key,
+                'date_range': historical_data.get('date_range', {}),
+                'interest_rates': historical_data.get('interest_rates', {}),
+                'fetch_timestamp': historical_data.get('fetch_timestamp', ''),
+                'data_sources': historical_data.get('data_sources', {}),
+                'processed_days': processed_days,
+                'summary': {
+                    'total_days_processed': len(processed_days),
+                    'total_opportunities_found': sum(len(day['arbitrage_opportunities']) for day in processed_days),
+                    'currencies_tracked': list(processed_days[0]['currency_values'].keys()) if processed_days else [],
+                    'date_range_processed': {
+                        'start': processed_days[0]['date'] if processed_days else None,
+                        'end': processed_days[-1]['date'] if processed_days else None
+                    }
+                }
+            }
+            
+            # Save to S3
+            processed_key = f"processed/historical/{date_str}/analysis.json"
             s3_client.put_object(
                 Bucket=PROCESSED_BUCKET,
-                Key=f"processed/{date_str}/arbitrage_opportunities.csv",
-                Body=arb_csv,
-                ContentType='text/csv'
+                Key=processed_key,
+                Body=json.dumps(processed_data, indent=2),
+                ContentType='application/json'
             )
+            
+            # Also save individual day data for easier GNN training
+            for day in processed_days:
+                day_key = f"processed/daily/{day['date']}/analysis.json"
+                s3_client.put_object(
+                    Bucket=PROCESSED_BUCKET,
+                    Key=day_key,
+                    Body=json.dumps(day, indent=2),
+                    ContentType='application/json'
+                )
+            
+            logger.info(f"Successfully processed {len(processed_days)} days of historical data")
+            logger.info(f"Found {processed_data['summary']['total_opportunities_found']} total opportunities")
+            logger.info(f"Interest rates: {historical_data.get('interest_rates', {})}")
+            
+        else:
+            # OLD: Process single day CSV data (backward compatibility)
+            response = s3_client.get_object(Bucket=bucket, Key=key)
+            csv_content = response['Body'].read().decode('utf-8')
+            fx_rates_df = pd.read_csv(io.StringIO(csv_content))
+            fx_rates_df.columns = [c.strip().lower() for c in fx_rates_df.columns]
 
-        logger.info(f"Successfully processed data for {date_str}")
-        logger.info(f"Found {len(arbitrage_ops)} arbitrage opportunities")
-        logger.info(f"Saved to: s3://{PROCESSED_BUCKET}/{processed_key}")
+            filename = key.split('/')[-1]
+            date_str = filename.split('_')[0]
+
+            currency_values = calculate_currency_values(fx_rates_df)
+            arbitrage_ops = detect_arbitrage_opportunities(fx_rates_df, currency_values)
+
+            processed_data = {
+                'processing_timestamp': datetime.utcnow().isoformat(),
+                'source_file': key,
+                'date': date_str,
+                'currency_values': currency_values,
+                'arbitrage_opportunities': arbitrage_ops,
+                'summary_stats': {
+                    'total_pairs': len(fx_rates_df),
+                    'currencies_covered': len(currency_values),
+                    'opportunities_found': len(arbitrage_ops),
+                    'average_rate': float(fx_rates_df['rate'].mean()),
+                    'rate_std_dev': float(fx_rates_df['rate'].std())
+                },
+                'raw_data_sample': fx_rates_df.head().to_dict('records')
+            }
+
+            processed_key = f"processed/{date_str}/analysis.json"
+            s3_client.put_object(
+                Bucket=PROCESSED_BUCKET,
+                Key=processed_key,
+                Body=json.dumps(processed_data, indent=2),
+                ContentType='application/json'
+            )
 
         return {
             'statusCode': 200,
             'body': json.dumps({
                 'message': 'Data processing completed successfully',
-                'date': date_str,
-                'currencies_processed': len(currency_values),
-                'arbitrage_opportunities': len(arbitrage_ops),
-                'output_location': f"s3://{PROCESSED_BUCKET}/{processed_key}"
+                'output_location': f"s3://{PROCESSED_BUCKET}/{processed_key}",
+                'days_processed': len(processed_days) if key.endswith('.json') else 1,
+                'total_opportunities': processed_data['summary']['total_opportunities_found'] if key.endswith('.json') else len(arbitrage_ops)
             })
         }
 
@@ -191,4 +277,3 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'body': json.dumps({'error': f'Data processing failed: {str(e)}'})
         }
-

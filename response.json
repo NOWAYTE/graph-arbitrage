@@ -1,1 +1,1 @@
-{"statusCode": 200, "body": "{\"message\": \"Data processing completed successfully\", \"date\": \"2025-09-28\", \"currencies_processed\": 6, \"arbitrage_opportunities\": 0, \"output_location\": \"s3://graph-arbitrage-processed-data-se/processed/2025-09-28/analysis.json\"}"}
+{"statusCode": 500, "body": "{\"error\": \"Data processing failed: 'pair'\"}"}
