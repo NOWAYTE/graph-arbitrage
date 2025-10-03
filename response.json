@@ -1,1 +1,1 @@
-{"statusCode": 500, "body": "{\"error\": \"Data processing failed: 'pair'\"}"}
+{"statusCode": 200, "body": "{\"message\": \"Historical data fetched successfully\", \"pairs_collected\": 21, \"days_per_pair\": 30, \"interest_rates_collected\": 7, \"output_file\": \"fx_historical_2025-10-02.json\"}"}

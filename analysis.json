@@ -1,43 +1,1075 @@
 {
-  "processing_timestamp": "2025-10-02T12:17:43.017524",
-  "source_file": "fx/2025-09-28_forex_rates.csv",
-  "date": "2025-09-28",
-  "currency_values": {
-    "AUD": 1.5880196524347499,
-    "CAD": 1.7424589407998436,
-    "EUR": 2.8330732267302956,
-    "GBP": 3.2396601092922443,
-    "JPY": 0.016209434384544273,
-    "USD": 2.429161923623363
+  "processing_timestamp": "2025-10-03T11:41:23.804464",
+  "source_file": "fx/fx_historical_2025-10-02.json",
+  "date_range": {
+    "start": "2025-09-02",
+    "end": "2025-10-02"
   },
-  "arbitrage_opportunities": [],
-  "summary_stats": {
-    "total_pairs": 5,
-    "currencies_covered": 6,
-    "opportunities_found": 0,
-    "average_rate": 30.878404474258424,
-    "rate_std_dev": 66.51413118659407
+  "interest_rates": {
+    "USD": 0.055,
+    "EUR": 0.045,
+    "JPY": 0.001,
+    "GBP": 0.052,
+    "AUD": 0.043,
+    "CAD": 0.05,
+    "CHF": 0.015
   },
-  "raw_data_sample": [
+  "fetch_timestamp": "2025-10-03T11:37:36.404015",
+  "data_sources": {
+    "fx_rates": "yfinance",
+    "interest_rates": "alpha_vantage"
+  },
+  "processed_days": [
     {
-      "pair": "USDEUR=X",
-      "rate": 0.8574299812316895
+      "date": "2025-09-02",
+      "currency_values": {
+        "AUD": 1.348294271127569,
+        "CAD": 1.4957754029164458,
+        "CHF": 2.5700003744407587,
+        "EUR": 2.4090328209203187,
+        "GBP": 2.785788049991894,
+        "JPY": 0.013980957391610267,
+        "USD": 2.056307392234401
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 43.97154838698251,
+        "rate_std_dev": 72.45121439714667
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8535400032997131,
+          "date": "2025-09-02"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.08399963378906,
+          "date": "2025-09-02"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7381200194358826,
+          "date": "2025-09-02"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5251339673995972,
+          "date": "2025-09-02"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3747400045394897,
+          "date": "2025-09-02"
+        }
+      ]
     },
     {
-      "pair": "USDJPY=X",
-      "rate": 149.86099243164062
+      "date": "2025-09-03",
+      "currency_values": {
+        "AUD": 1.3488515728983597,
+        "CAD": 1.5012162263229645,
+        "CHF": 2.5697637487220404,
+        "EUR": 2.4073664447769416,
+        "GBP": 2.7692945646152642,
+        "JPY": 0.013930716285919518,
+        "USD": 2.0692577265742136
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.12854708944048,
+        "rate_std_dev": 72.66092970149992
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8593999743461609,
+          "date": "2025-09-03"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 148.54800415039062,
+          "date": "2025-09-03"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.747189998626709,
+          "date": "2025-09-03"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.534142017364502,
+          "date": "2025-09-03"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3784500360488892,
+          "date": "2025-09-03"
+        }
+      ]
     },
     {
-      "pair": "USDGBP=X",
-      "rate": 0.7498199939727783
+      "date": "2025-09-04",
+      "currency_values": {
+        "AUD": 1.351239865902039,
+        "CAD": 1.4969083143180857,
+        "CHF": 2.5686910439824797,
+        "EUR": 2.4074426100418704,
+        "GBP": 2.7751249538348075,
+        "JPY": 0.013953015477173385,
+        "USD": 2.064685541444
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.05374866440182,
+        "rate_std_dev": 72.55002545317515
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8575999736785889,
+          "date": "2025-09-04"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.97999572753906,
+          "date": "2025-09-04"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7439600229263306,
+          "date": "2025-09-04"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5280239582061768,
+          "date": "2025-09-04"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3793100118637085,
+          "date": "2025-09-04"
+        }
+      ]
     },
     {
-      "pair": "USDAUD=X",
-      "rate": 1.5296800136566162
+      "date": "2025-09-05",
+      "currency_values": {
+        "AUD": 1.3483914631805574,
+        "CAD": 1.496542338914832,
+        "CHF": 2.568028171891498,
+        "EUR": 2.4099324002127114,
+        "GBP": 2.7794452271143326,
+        "JPY": 0.013934575439145365,
+        "USD": 2.0674665521381708
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.13179990507307,
+        "rate_std_dev": 72.69607136880815
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8578600287437439,
+          "date": "2025-09-05"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 148.375,
+          "date": "2025-09-05"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7437999844551086,
+          "date": "2025-09-05"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5332720279693604,
+          "date": "2025-09-05"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.381500005722046,
+          "date": "2025-09-05"
+        }
+      ]
     },
     {
-      "pair": "USDCAD=X",
-      "rate": 1.3940999507904053
+      "date": "2025-09-08",
+      "currency_values": {
+        "AUD": 1.3513460412990246,
+        "CAD": 1.490245367458902,
+        "CHF": 2.5798052175587345,
+        "EUR": 2.4147955784925452,
+        "GBP": 2.7817650444292115,
+        "JPY": 0.013898487281057196,
+        "USD": 2.0616758208134747
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.277550850595745,
+        "rate_std_dev": 72.97554779105562
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8537399768829346,
+          "date": "2025-09-08"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 148.343994140625,
+          "date": "2025-09-08"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.741129994392395,
+          "date": "2025-09-08"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.525668978691101,
+          "date": "2025-09-08"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3833999633789062,
+          "date": "2025-09-08"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-09",
+      "currency_values": {
+        "AUD": 1.353810752388737,
+        "CAD": 1.4874710301584055,
+        "CHF": 2.5882674765094227,
+        "EUR": 2.41477068216564,
+        "GBP": 2.7807705920582735,
+        "JPY": 0.01392479484980904,
+        "USD": 2.0518920446066886
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.1849318033173,
+        "rate_std_dev": 72.83787818109332
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8496800065040588,
+          "date": "2025-09-09"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.36399841308594,
+          "date": "2025-09-09"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7378399968147278,
+          "date": "2025-09-09"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.515589952468872,
+          "date": "2025-09-09"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3795000314712524,
+          "date": "2025-09-09"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-10",
+      "currency_values": {
+        "AUD": 1.3549216116148515,
+        "CAD": 1.4861030445020618,
+        "CHF": 2.5806389532987954,
+        "EUR": 2.4079764277913993,
+        "GBP": 2.7820059896666804,
+        "JPY": 0.013961353293136343,
+        "USD": 2.0576516304843313
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.0459236786479,
+        "rate_std_dev": 72.58621822366955
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8544999957084656,
+          "date": "2025-09-10"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.39199829101562,
+          "date": "2025-09-10"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7395849823951721,
+          "date": "2025-09-10"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.518671989440918,
+          "date": "2025-09-10"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.384660005569458,
+          "date": "2025-09-10"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-11",
+      "currency_values": {
+        "AUD": 1.3612400269244367,
+        "CAD": 1.4836490717991686,
+        "CHF": 2.575018829743801,
+        "EUR": 2.4067270868863724,
+        "GBP": 2.7832868512644646,
+        "JPY": 0.013958700353797053,
+        "USD": 2.0564771694425583
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.044372595491865,
+        "rate_std_dev": 72.56742196952172
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.854449987411499,
+          "date": "2025-09-11"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.33200073242188,
+          "date": "2025-09-11"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7388399839401245,
+          "date": "2025-09-11"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5107300281524658,
+          "date": "2025-09-11"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3860499858856201,
+          "date": "2025-09-11"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-12",
+      "currency_values": {
+        "AUD": 1.3672736257852889,
+        "CAD": 1.4825277412377034,
+        "CHF": 2.5768208535659793,
+        "EUR": 2.4065355117916587,
+        "GBP": 2.7843980883412227,
+        "JPY": 0.013931549012142384,
+        "USD": 2.050852845329883
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.13386520033791,
+        "rate_std_dev": 72.71362642533256
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8521699905395508,
+          "date": "2025-09-12"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.2239990234375,
+          "date": "2025-09-12"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7365599870681763,
+          "date": "2025-09-12"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.4996999502182007,
+          "date": "2025-09-12"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.383370041847229,
+          "date": "2025-09-12"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-15",
+      "currency_values": {
+        "AUD": 1.3654546781980423,
+        "CAD": 1.4840107377737461,
+        "CHF": 2.5778731940284465,
+        "EUR": 2.408058361923506,
+        "GBP": 2.783223956756393,
+        "JPY": 0.013908474507773265,
+        "USD": 2.0536643078569914
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.219263528074535,
+        "rate_std_dev": 72.85701742754827
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8527699708938599,
+          "date": "2025-09-15"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.66600036621094,
+          "date": "2025-09-15"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.737820029258728,
+          "date": "2025-09-15"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5039860010147095,
+          "date": "2025-09-15"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3839000463485718,
+          "date": "2025-09-15"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-16",
+      "currency_values": {
+        "AUD": 1.3666363810045785,
+        "CAD": 1.486803143850106,
+        "CHF": 2.5772788402928093,
+        "EUR": 2.409069069174421,
+        "GBP": 2.7856684265180167,
+        "JPY": 0.013894092143747205,
+        "USD": 2.0479686069536416
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.26681515716371,
+        "rate_std_dev": 72.93663154948152
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8500699996948242,
+          "date": "2025-09-16"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.40499877929688,
+          "date": "2025-09-16"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7351499795913696,
+          "date": "2025-09-16"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.498576045036316,
+          "date": "2025-09-16"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3774000406265259,
+          "date": "2025-09-16"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-17",
+      "currency_values": {
+        "AUD": 1.3629314060717312,
+        "CAD": 1.4830871746768755,
+        "CHF": 2.5927072345965074,
+        "EUR": 2.418761126546,
+        "GBP": 2.7819594131127947,
+        "JPY": 0.01391715951159738,
+        "USD": 2.0375649783056167
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.20627140431177,
+        "rate_std_dev": 72.88170534438488
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8423600196838379,
+          "date": "2025-09-17"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 146.41299438476562,
+          "date": "2025-09-17"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7323899865150452,
+          "date": "2025-09-17"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.4949920177459717,
+          "date": "2025-09-17"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3738800287246704,
+          "date": "2025-09-17"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-18",
+      "currency_values": {
+        "AUD": 1.3593121228587468,
+        "CAD": 1.483919252401299,
+        "CHF": 2.591989671762873,
+        "EUR": 2.416255819455511,
+        "GBP": 2.784883303773816,
+        "JPY": 0.013910937366025463,
+        "USD": 2.0432944911005575
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.23583306301208,
+        "rate_std_dev": 72.93744153930076
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8455700278282166,
+          "date": "2025-09-18"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 146.89100646972656,
+          "date": "2025-09-18"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7336900234222412,
+          "date": "2025-09-18"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.503193974494934,
+          "date": "2025-09-18"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3769899606704712,
+          "date": "2025-09-18"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-19",
+      "currency_values": {
+        "AUD": 1.3576048499626923,
+        "CAD": 1.4874388051168774,
+        "CHF": 2.5886609494221187,
+        "EUR": 2.418485015140106,
+        "GBP": 2.7807921577453674,
+        "JPY": 0.013866081468056181,
+        "USD": 2.0513825699489683
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.39344645681835,
+        "rate_std_dev": 73.18218488241008
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8481000065803528,
+          "date": "2025-09-19"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.94700622558594,
+          "date": "2025-09-19"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7376800179481506,
+          "date": "2025-09-19"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5110529661178589,
+          "date": "2025-09-19"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3791799545288086,
+          "date": "2025-09-19"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-22",
+      "currency_values": {
+        "AUD": 1.3557171770708532,
+        "CAD": 1.4927618259932405,
+        "CHF": 2.5842331950019393,
+        "EUR": 2.414759413910168,
+        "GBP": 2.7700899248018374,
+        "JPY": 0.013893532651709844,
+        "USD": 2.05744511436714
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.27478226593563,
+        "rate_std_dev": 72.94249842917253
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8520100116729736,
+          "date": "2025-09-22"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 148.09500122070312,
+          "date": "2025-09-22"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.742680013179779,
+          "date": "2025-09-22"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.51760995388031,
+          "date": "2025-09-22"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3782000541687012,
+          "date": "2025-09-22"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-23",
+      "currency_values": {
+        "AUD": 1.355133046064471,
+        "CAD": 1.4849557746554003,
+        "CHF": 2.5911503233385798,
+        "EUR": 2.422654214678758,
+        "GBP": 2.7744856046531448,
+        "JPY": 0.013898262564312041,
+        "USD": 2.0529459519673363
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.28294277474994,
+        "rate_std_dev": 73.00075338939753
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8473799824714661,
+          "date": "2025-09-23"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.72500610351562,
+          "date": "2025-09-23"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7399200201034546,
+          "date": "2025-09-23"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.514693021774292,
+          "date": "2025-09-23"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3824900388717651,
+          "date": "2025-09-23"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-24",
+      "currency_values": {
+        "AUD": 1.3541156158272332,
+        "CAD": 1.483009047444059,
+        "CHF": 2.5933031608166024,
+        "EUR": 2.424579461140421,
+        "GBP": 2.7753541136239726,
+        "JPY": 0.013904259790406676,
+        "USD": 2.0523171036385124
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.26912238484337,
+        "rate_std_dev": 72.9903217122639
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8464199900627136,
+          "date": "2025-09-24"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.61300659179688,
+          "date": "2025-09-24"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7394000291824341,
+          "date": "2025-09-24"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5156569480895996,
+          "date": "2025-09-24"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3839099407196045,
+          "date": "2025-09-24"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-25",
+      "currency_values": {
+        "AUD": 1.3573593821406136,
+        "CAD": 1.4830387375326257,
+        "CHF": 2.593329067372782,
+        "EUR": 2.420207938345322,
+        "GBP": 2.772081723361918,
+        "JPY": 0.013855001706540257,
+        "USD": 2.0607709976273996
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.43821540616808,
+        "rate_std_dev": 73.25253911254511
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8514500260353088,
+          "date": "2025-09-25"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 148.75100708007812,
+          "date": "2025-09-25"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7433620095252991,
+          "date": "2025-09-25"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5181599855422974,
+          "date": "2025-09-25"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3896000385284424,
+          "date": "2025-09-25"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-26",
+      "currency_values": {
+        "AUD": 1.3549724129853287,
+        "CAD": 1.486771067114928,
+        "CHF": 2.590897917858646,
+        "EUR": 2.417336060397901,
+        "GBP": 2.76425458416282,
+        "JPY": 0.013832797011417155,
+        "USD": 2.0727650193303186
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.50967341377621,
+        "rate_std_dev": 73.34248492821371
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8574299812316895,
+          "date": "2025-09-26"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 149.86099243164062,
+          "date": "2025-09-26"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7498199939727783,
+          "date": "2025-09-26"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5296800136566162,
+          "date": "2025-09-26"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3940999507904053,
+          "date": "2025-09-26"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-29",
+      "currency_values": {
+        "AUD": 1.354663704942011,
+        "CAD": 1.4833681830158314,
+        "CHF": 2.592642336666908,
+        "EUR": 2.420171048539683,
+        "GBP": 2.772052036521421,
+        "JPY": 0.013839233736175178,
+        "USD": 2.0673663952427717
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.50047964425314,
+        "rate_std_dev": 73.3564471995263
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8540999889373779,
+          "date": "2025-09-29"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 149.40499877929688,
+          "date": "2025-09-29"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7458099722862244,
+          "date": "2025-09-29"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.52578604221344,
+          "date": "2025-09-29"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.39382004737854,
+          "date": "2025-09-29"
+        }
+      ]
+    },
+    {
+      "date": "2025-09-30",
+      "currency_values": {
+        "AUD": 1.3572422876507308,
+        "CAD": 1.48239582414648,
+        "CHF": 2.587363073826649,
+        "EUR": 2.420028707286231,
+        "GBP": 2.771777167112013,
+        "JPY": 0.013883632113242816,
+        "USD": 2.0627145447137325
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.3305648678825,
+        "rate_std_dev": 73.0605535822417
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8524100184440613,
+          "date": "2025-09-30"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 148.59500122070312,
+          "date": "2025-09-30"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7441999912261963,
+          "date": "2025-09-30"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5192999839782715,
+          "date": "2025-09-30"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3916200399398804,
+          "date": "2025-09-30"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-01",
+      "currency_values": {
+        "AUD": 1.3617046556923098,
+        "CAD": 1.4794079044269952,
+        "CHF": 2.586720476064766,
+        "EUR": 2.4172563859014096,
+        "GBP": 2.7690386811670376,
+        "JPY": 0.013918937807984505,
+        "USD": 2.0597846098522385
+      },
+      "arbitrage_opportunities": [],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 0,
+        "average_rate": 44.19329548733575,
+        "rate_std_dev": 72.8187032535088
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8520900011062622,
+          "date": "2025-10-01"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.9969940185547,
+          "date": "2025-10-01"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7438600063323975,
+          "date": "2025-10-01"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.512699007987976,
+          "date": "2025-10-01"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3923499584197998,
+          "date": "2025-10-01"
+        }
+      ]
     }
-  ]
+  ],
+  "summary": {
+    "total_days_processed": 22,
+    "total_opportunities_found": 0,
+    "currencies_tracked": [
+      "AUD",
+      "CAD",
+      "CHF",
+      "EUR",
+      "GBP",
+      "JPY",
+      "USD"
+    ],
+    "date_range_processed": {
+      "start": "2025-09-02",
+      "end": "2025-10-01"
+    }
+  }
 }
