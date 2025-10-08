@@ -1,0 +1,18 @@
+{
+  "summary_date": "2025-10-08",
+  "days_processed": 22,
+  "average_rate_stddev": 72.89083,
+  "arbitrage_opportunities_found": 462,
+  "interest_rate_arbitrage_found": 462,
+  "data_integrity": "FAIL",
+  "currencies_tracked": [
+    "AUD",
+    "CAD",
+    "EUR",
+    "GBP",
+    "JPY",
+    "USD"
+  ],
+  "expected_pairs": 15,
+  "actual_pairs": 5
+}

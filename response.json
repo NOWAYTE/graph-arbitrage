@@ -1,1 +1,1 @@
-{"statusCode": 200, "body": "{\"message\": \"Historical data fetched successfully\", \"pairs_collected\": 21, \"days_per_pair\": 30, \"interest_rates_collected\": 7, \"output_file\": \"fx_historical_2025-10-02.json\"}"}
+{"statusCode": 200, "body": "{\"message\": \"Data processing completed successfully\", \"output_location\": \"s3://graph-arbitrage-processed-data-se/processed/historical/2025-10-02/analysis.json\", \"days_processed\": 22, \"total_opportunities\": 462}"}

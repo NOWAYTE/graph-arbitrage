@@ -4,6 +4,7 @@ import numpy as np
 import json
 import logging
 from datetime import datetime
+import itertools
 import io
 
 logger = logging.getLogger()
@@ -14,6 +15,7 @@ dynamodb = boto3.resource('dynamodb')
 
 RAW_BUCKET = 'graph-arbitrage-raw-data-se'
 PROCESSED_BUCKET = 'graph-arbitrage-processed-data-se'
+
 
 def calculate_currency_values(fx_rates_df):
     try:
@@ -70,6 +72,7 @@ def calculate_currency_values(fx_rates_df):
         logger.error(f"Error calculating currency values: {str(e)}")
         raise
 
+
 def detect_arbitrage_opportunities(fx_rates_df, currency_values):
     opportunities = []
     try:
@@ -100,21 +103,135 @@ def detect_arbitrage_opportunities(fx_rates_df, currency_values):
         logger.error(f"Error detecting arbitrage: {str(e)}")
         raise
 
+
+def validate_fx_data(fx_rates_df):
+    """Check if all currency pairs exist (data integrity validation)."""
+    currencies = set()
+    for pair in fx_rates_df['pair']:
+        pair_clean = pair.replace('=X', '')
+        if len(pair_clean) == 6:
+            currencies.add(pair_clean[:3])
+            currencies.add(pair_clean[3:])
+
+    expected_pairs = len(currencies) * (len(currencies) - 1) / 2
+    actual_pairs = len(fx_rates_df)
+    integrity = "PASS" if actual_pairs >= expected_pairs * 0.9 else "FAIL"
+
+    return {
+        "currencies": sorted(list(currencies)),
+        "expected_pairs": int(expected_pairs),
+        "actual_pairs": int(actual_pairs),
+        "status": integrity
+    }
+
+
+def detect_triangular_arbitrage(fx_rates_df):
+    """Detect 3-currency arbitrage cycles like USD→EUR→JPY→USD."""
+    rates = {}
+    for _, row in fx_rates_df.iterrows():
+        pair_clean = row['pair'].replace('=X', '')
+        if len(pair_clean) == 6:
+            base, quote = pair_clean[:3], pair_clean[3:]
+            rates[(base, quote)] = row['rate']
+
+    opportunities = []
+    currencies = list({c for a, b in rates.keys() for c in [a, b]})
+
+    for a, b, c in itertools.permutations(currencies, 3):
+        if (a, b) in rates and (b, c) in rates and (c, a) in rates:
+            product = rates[(a, b)] * rates[(b, c)] * rates[(c, a)]
+            if product > 1.001:  # >0.1% profit threshold
+                profit_pct = (product - 1) * 100
+                opportunities.append({
+                    "cycle": f"{a}->{b}->{c}->{a}",
+                    "profit_pct": round(profit_pct, 4),
+                    "links": [
+                        {"pair": f"{a}{b}=X", "rate": rates[(a, b)]},
+                        {"pair": f"{b}{c}=X", "rate": rates[(b, c)]},
+                        {"pair": f"{c}{a}=X", "rate": rates[(c, a)]},
+                    ]
+                })
+
+    return opportunities
+def detect_interest_rate_arbitrage(fx_rates_df, interest_rates):
+    """
+    Detect interest-rate arbitrage opportunities based on covered interest-rate parity (CIP).
+    For each currency pair, compare actual rate vs theoretical rate implied by interest rates.
+    """
+    opportunities = []
+
+    for _, row in fx_rates_df.iterrows():
+        pair_clean = row['pair'].replace('=X', '')
+        if len(pair_clean) == 6:
+            base, quote = pair_clean[:3], pair_clean[3:]
+
+            if base in interest_rates and quote in interest_rates:
+                try:
+                    base_rate = interest_rates[base]
+                    quote_rate = interest_rates[quote]
+                    spot_rate = row['rate']
+
+                    # Theoretical parity rate adjustment
+                    expected_rate = spot_rate * (1 + base_rate) / (1 + quote_rate)
+
+                    deviation_pct = (spot_rate - expected_rate) / expected_rate * 100
+
+                    if abs(deviation_pct) > 0.1:  # >0.1% difference threshold
+                        opportunities.append({
+                            "pair": f"{base}{quote}=X",
+                            "spot_rate": round(spot_rate, 6),
+                            "expected_rate": round(expected_rate, 6),
+                            "base_rate": base_rate,
+                            "quote_rate": quote_rate,
+                            "deviation_pct": round(deviation_pct, 4)
+                        })
+                except Exception as e:
+                    logger.warning(f"Error computing interest-rate arbitrage for {pair_clean}: {str(e)}")
+                    continue
+
+    logger.info(f"Found {len(opportunities)} interest-rate arbitrage opportunities.")
+    return opportunities
+
+
+
+def generate_summary_report(processed_days, data_validation):
+    """Generate compact summary report."""
+    if not processed_days:
+        return {"error": "No data processed"}
+
+    total_days = len(processed_days)
+    total_opps = sum(len(day['arbitrage_opportunities']) for day in processed_days)
+    avg_rate_std = np.mean([day['summary_stats']['rate_std_dev'] for day in processed_days])
+    interest_opps = sum(
+        1 for day in processed_days for op in day['arbitrage_opportunities']
+        if 'deviation_pct' in op
+    )
+
+    return {
+        "summary_date": datetime.utcnow().strftime("%Y-%m-%d"),
+        "days_processed": total_days,
+        "average_rate_stddev": round(avg_rate_std, 5),
+        "arbitrage_opportunities_found": total_opps,
+        "interest_rate_arbitrage_found": interest_opps,
+        "data_integrity": data_validation['status'],
+        "currencies_tracked": data_validation['currencies'],
+        "expected_pairs": data_validation['expected_pairs'],
+        "actual_pairs": data_validation['actual_pairs']
+    }
+
+
 def process_historical_data(historical_data):
     """Process multiple days of historical data for GNN training"""
     processed_days = []
-    
-    # Get all unique dates from the first currency pair
+
     first_pair = list(historical_data['fx_rates'].keys())[0]
     all_dates = historical_data['fx_rates'][first_pair]['dates']
-    
+
     logger.info(f"Processing {len(all_dates)} days of historical data")
-    
-    # Process each day
+
     for day_index, date in enumerate(all_dates):
         daily_rates = []
-        
-        # Collect rates for all pairs for this specific day
+
         for pair, pair_data in historical_data['fx_rates'].items():
             if day_index < len(pair_data['closes']):
                 daily_rates.append({
@@ -122,14 +239,20 @@ def process_historical_data(historical_data):
                     'rate': pair_data['closes'][day_index],
                     'date': date
                 })
-        
-        # Only process days where we have sufficient data
-        if len(daily_rates) >= 10:  # At least 10 pairs
+
+        if len(daily_rates) >= 10:
             try:
                 df = pd.DataFrame(daily_rates)
                 currency_values = calculate_currency_values(df)
                 arbitrage_ops = detect_arbitrage_opportunities(df, currency_values)
-                
+                validation = validate_fx_data(df)
+                triangular_ops = detect_triangular_arbitrage(df)
+                arbitrage_ops.extend(triangular_ops)
+
+                if 'interest_rates' in historical_data:
+                    interest_ops = detect_interest_rate_arbitrage(df, historical_data['interest_rates'])
+                    arbitrage_ops.extend(interest_ops)
+
                 processed_day = {
                     'date': date,
                     'currency_values': currency_values,
@@ -144,16 +267,16 @@ def process_historical_data(historical_data):
                     'raw_data_sample': df.head().to_dict('records')
                 }
                 processed_days.append(processed_day)
-                
                 logger.info(f"Processed day {date}: {len(arbitrage_ops)} opportunities")
-                
+
             except Exception as e:
                 logger.error(f"Error processing day {date}: {str(e)}")
                 continue
         else:
             logger.warning(f"Skipping day {date}: insufficient data ({len(daily_rates)} pairs)")
-    
+
     return processed_days
+
 
 def lambda_handler(event, context):
     logger.info("Data processing started")
@@ -164,24 +287,18 @@ def lambda_handler(event, context):
 
         logger.info(f"Processing file s3://{bucket}/{key}")
 
-        # Check if it's the new JSON format or old CSV format
         if key.endswith('.json'):
-            # NEW: Process historical JSON data
             response = s3_client.get_object(Bucket=bucket, Key=key)
             json_content = response['Body'].read().decode('utf-8')
             historical_data = json.loads(json_content)
-            
-            # Validate the new data structure
+
             if 'fx_rates' not in historical_data or 'interest_rates' not in historical_data:
                 raise ValueError("Invalid JSON structure: missing fx_rates or interest_rates")
-            
-            # Process all historical days
+
             processed_days = process_historical_data(historical_data)
-            
-            # Prepare output
             filename = key.split('/')[-1]
             date_str = filename.replace('fx_historical_', '').replace('.json', '')
-            
+
             processed_data = {
                 'processing_timestamp': datetime.utcnow().isoformat(),
                 'source_file': key,
@@ -200,8 +317,7 @@ def lambda_handler(event, context):
                     }
                 }
             }
-            
-            # Save to S3
+
             processed_key = f"processed/historical/{date_str}/analysis.json"
             s3_client.put_object(
                 Bucket=PROCESSED_BUCKET,
@@ -209,23 +325,26 @@ def lambda_handler(event, context):
                 Body=json.dumps(processed_data, indent=2),
                 ContentType='application/json'
             )
-            
-            # Also save individual day data for easier GNN training
-            for day in processed_days:
-                day_key = f"processed/daily/{day['date']}/analysis.json"
-                s3_client.put_object(
-                    Bucket=PROCESSED_BUCKET,
-                    Key=day_key,
-                    Body=json.dumps(day, indent=2),
-                    ContentType='application/json'
-                )
-            
-            logger.info(f"Successfully processed {len(processed_days)} days of historical data")
-            logger.info(f"Found {processed_data['summary']['total_opportunities_found']} total opportunities")
-            logger.info(f"Interest rates: {historical_data.get('interest_rates', {})}")
-            
+
+            # Also generate summary report safely
+            try:
+                if processed_days:
+                    last_day_df = pd.DataFrame(processed_days[-1]['raw_data_sample'])
+                    validation = validate_fx_data(last_day_df)
+                    report = generate_summary_report(processed_days, validation)
+                    report_key = f"reports/{date_str}/report.json"
+                    s3_client.put_object(
+                        Bucket=PROCESSED_BUCKET,
+                        Key=report_key,
+                        Body=json.dumps(report, indent=2),
+                        ContentType="application/json"
+                    )
+                    logger.info(f"Summary report saved to s3://{PROCESSED_BUCKET}/{report_key}")
+            except Exception as e:
+                logger.error(f"Report generation failed: {str(e)}")
+
         else:
-            # OLD: Process single day CSV data (backward compatibility)
+            # Legacy CSV mode
             response = s3_client.get_object(Bucket=bucket, Key=key)
             csv_content = response['Body'].read().decode('utf-8')
             fx_rates_df = pd.read_csv(io.StringIO(csv_content))
@@ -277,3 +396,4 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'body': json.dumps({'error': f'Data processing failed: {str(e)}'})
         }
+

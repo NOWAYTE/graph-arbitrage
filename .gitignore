@@ -6,3 +6,8 @@ deployment-package.zip
 awscliv2.zip
 aws/
 
+# gnore Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
