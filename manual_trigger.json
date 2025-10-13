@@ -4,7 +4,7 @@
       "eventVersion": "2.1",
       "eventSource": "aws:s3",
       "awsRegion": "us-east-1",
-      "eventTime": "2025-10-03T13:49:07.000Z",
+      "eventTime": "2025-10-13T14:22:39.000Z",
       "eventName": "ObjectCreated:Put",
       "s3": {
         "s3SchemaVersion": "1.0",
@@ -14,8 +14,8 @@
           "arn": "arn:aws:s3:::graph-arbitrage-raw-data-se"
         },
         "object": {
-          "key": "fx/fx_historical_2025-10-02.json",
-          "size": 24892,
+          "key": "fx/fx_historical_2025-10-12.json",
+          "size": 23300,
           "eTag": "0123456789abcdef0123456789abcdef",
           "sequencer": "0A1B2C3D4E5F678901"
         }

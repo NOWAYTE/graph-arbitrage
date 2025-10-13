@@ -1,9 +1,9 @@
 {
-  "processing_timestamp": "2025-10-08T03:53:43.007383",
-  "source_file": "fx/fx_historical_2025-10-02.json",
+  "processing_timestamp": "2025-10-13T12:51:25.353428",
+  "source_file": "fx/fx_historical_2025-10-12.json",
   "date_range": {
-    "start": "2025-09-02",
-    "end": "2025-10-02"
+    "start": "2025-09-12",
+    "end": "2025-10-12"
   },
   "interest_rates": {
     "USD": 0.055,
@@ -14,1740 +14,12 @@
     "CAD": 0.05,
     "CHF": 0.015
   },
-  "fetch_timestamp": "2025-10-03T11:45:35.343460",
+  "fetch_timestamp": "2025-10-13T12:44:25.035803",
   "data_sources": {
     "fx_rates": "yfinance",
     "interest_rates": "alpha_vantage"
   },
   "processed_days": [
-    {
-      "date": "2025-09-02",
-      "currency_values": {
-        "AUD": 1.348294271127569,
-        "CAD": 1.4957754029164458,
-        "CHF": 2.5700003744407587,
-        "EUR": 2.4090328209203187,
-        "GBP": 2.785788049991894,
-        "JPY": 0.013980957391610267,
-        "USD": 2.056307392234401
-      },
-      "arbitrage_opportunities": [
-        {
-          "pair": "USDEUR=X",
-          "spot_rate": 0.85354,
-          "expected_rate": 0.861708,
-          "base_rate": 0.055,
-          "quote_rate": 0.045,
-          "deviation_pct": -0.9479
-        },
-        {
-          "pair": "USDJPY=X",
-          "spot_rate": 147.084,
-          "expected_rate": 155.018601,
-          "base_rate": 0.055,
-          "quote_rate": 0.001,
-          "deviation_pct": -5.1185
-        },
-        {
-          "pair": "USDGBP=X",
-          "spot_rate": 0.73812,
-          "expected_rate": 0.740225,
-          "base_rate": 0.055,
-          "quote_rate": 0.052,
-          "deviation_pct": -0.2844
-        },
-        {
-          "pair": "USDAUD=X",
-          "spot_rate": 1.525134,
-          "expected_rate": 1.542681,
-          "base_rate": 0.055,
-          "quote_rate": 0.043,
-          "deviation_pct": -1.1374
-        },
-        {
-          "pair": "USDCAD=X",
-          "spot_rate": 1.37474,
-          "expected_rate": 1.381286,
-          "base_rate": 0.055,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.4739
-        },
-        {
-          "pair": "USDCHF=X",
-          "spot_rate": 0.80015,
-          "expected_rate": 0.831683,
-          "base_rate": 0.055,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.7915
-        },
-        {
-          "pair": "EURGBP=X",
-          "spot_rate": 0.8647,
-          "expected_rate": 0.858946,
-          "base_rate": 0.045,
-          "quote_rate": 0.052,
-          "deviation_pct": 0.6699
-        },
-        {
-          "pair": "EURJPY=X",
-          "spot_rate": 172.317993,
-          "expected_rate": 179.89241,
-          "base_rate": 0.045,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.2105
-        },
-        {
-          "pair": "EURCHF=X",
-          "spot_rate": 0.9374,
-          "expected_rate": 0.965106,
-          "base_rate": 0.045,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.8708
-        },
-        {
-          "pair": "GBPJPY=X",
-          "spot_rate": 199.261002,
-          "expected_rate": 209.413161,
-          "base_rate": 0.052,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.8479
-        },
-        {
-          "pair": "GBPCHF=X",
-          "spot_rate": 1.08394,
-          "expected_rate": 1.123453,
-          "base_rate": 0.052,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.5171
-        },
-        {
-          "pair": "AUDJPY=X",
-          "spot_rate": 96.435997,
-          "expected_rate": 100.482263,
-          "base_rate": 0.043,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.0268
-        },
-        {
-          "pair": "CADJPY=X",
-          "spot_rate": 106.984001,
-          "expected_rate": 112.22098,
-          "base_rate": 0.05,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.6667
-        },
-        {
-          "pair": "CHFJPY=X",
-          "spot_rate": 183.80835,
-          "expected_rate": 186.379096,
-          "base_rate": 0.015,
-          "quote_rate": 0.001,
-          "deviation_pct": -1.3793
-        },
-        {
-          "pair": "EURAUD=X",
-          "spot_rate": 1.78669,
-          "expected_rate": 1.790116,
-          "base_rate": 0.045,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.1914
-        },
-        {
-          "pair": "EURCAD=X",
-          "spot_rate": 1.61047,
-          "expected_rate": 1.602801,
-          "base_rate": 0.045,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.4785
-        },
-        {
-          "pair": "AUDCAD=X",
-          "spot_rate": 0.90133,
-          "expected_rate": 0.895321,
-          "base_rate": 0.043,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.6711
-        },
-        {
-          "pair": "AUDCHF=X",
-          "spot_rate": 0.52463,
-          "expected_rate": 0.539103,
-          "base_rate": 0.043,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.6846
-        },
-        {
-          "pair": "CADCHF=X",
-          "spot_rate": 0.58194,
-          "expected_rate": 0.602007,
-          "base_rate": 0.05,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.3333
-        },
-        {
-          "pair": "GBPAUD=X",
-          "spot_rate": 2.06598,
-          "expected_rate": 2.083807,
-          "base_rate": 0.052,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.8555
-        },
-        {
-          "pair": "GBPCAD=X",
-          "spot_rate": 1.86241,
-          "expected_rate": 1.865957,
-          "base_rate": 0.052,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.1901
-        }
-      ],
-      "summary_stats": {
-        "total_pairs": 21,
-        "currencies_covered": 7,
-        "opportunities_found": 21,
-        "average_rate": 43.97154838698251,
-        "rate_std_dev": 72.45121439714667
-      },
-      "raw_data_sample": [
-        {
-          "pair": "USDEUR=X",
-          "rate": 0.8535400032997131,
-          "date": "2025-09-02"
-        },
-        {
-          "pair": "USDJPY=X",
-          "rate": 147.08399963378906,
-          "date": "2025-09-02"
-        },
-        {
-          "pair": "USDGBP=X",
-          "rate": 0.7381200194358826,
-          "date": "2025-09-02"
-        },
-        {
-          "pair": "USDAUD=X",
-          "rate": 1.5251339673995972,
-          "date": "2025-09-02"
-        },
-        {
-          "pair": "USDCAD=X",
-          "rate": 1.3747400045394897,
-          "date": "2025-09-02"
-        }
-      ]
-    },
-    {
-      "date": "2025-09-03",
-      "currency_values": {
-        "AUD": 1.3488515728983597,
-        "CAD": 1.5012162263229645,
-        "CHF": 2.5697637487220404,
-        "EUR": 2.4073664447769416,
-        "GBP": 2.7692945646152642,
-        "JPY": 0.013930716285919518,
-        "USD": 2.0692577265742136
-      },
-      "arbitrage_opportunities": [
-        {
-          "pair": "USDEUR=X",
-          "spot_rate": 0.8594,
-          "expected_rate": 0.867624,
-          "base_rate": 0.055,
-          "quote_rate": 0.045,
-          "deviation_pct": -0.9479
-        },
-        {
-          "pair": "USDJPY=X",
-          "spot_rate": 148.548004,
-          "expected_rate": 156.561583,
-          "base_rate": 0.055,
-          "quote_rate": 0.001,
-          "deviation_pct": -5.1185
-        },
-        {
-          "pair": "USDGBP=X",
-          "spot_rate": 0.74719,
-          "expected_rate": 0.749321,
-          "base_rate": 0.055,
-          "quote_rate": 0.052,
-          "deviation_pct": -0.2844
-        },
-        {
-          "pair": "USDAUD=X",
-          "spot_rate": 1.534142,
-          "expected_rate": 1.551793,
-          "base_rate": 0.055,
-          "quote_rate": 0.043,
-          "deviation_pct": -1.1374
-        },
-        {
-          "pair": "USDCAD=X",
-          "spot_rate": 1.37845,
-          "expected_rate": 1.385014,
-          "base_rate": 0.055,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.4739
-        },
-        {
-          "pair": "USDCHF=X",
-          "spot_rate": 0.80529,
-          "expected_rate": 0.837026,
-          "base_rate": 0.055,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.7915
-        },
-        {
-          "pair": "EURGBP=X",
-          "spot_rate": 0.86924,
-          "expected_rate": 0.863456,
-          "base_rate": 0.045,
-          "quote_rate": 0.052,
-          "deviation_pct": 0.6699
-        },
-        {
-          "pair": "EURJPY=X",
-          "spot_rate": 172.817001,
-          "expected_rate": 180.413353,
-          "base_rate": 0.045,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.2105
-        },
-        {
-          "pair": "EURCHF=X",
-          "spot_rate": 0.93682,
-          "expected_rate": 0.964509,
-          "base_rate": 0.045,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.8708
-        },
-        {
-          "pair": "GBPJPY=X",
-          "spot_rate": 198.794998,
-          "expected_rate": 208.923415,
-          "base_rate": 0.052,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.8479
-        },
-        {
-          "pair": "GBPCHF=X",
-          "spot_rate": 1.07763,
-          "expected_rate": 1.116913,
-          "base_rate": 0.052,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.5171
-        },
-        {
-          "pair": "AUDJPY=X",
-          "spot_rate": 96.822998,
-          "expected_rate": 100.885501,
-          "base_rate": 0.043,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.0268
-        },
-        {
-          "pair": "CADJPY=X",
-          "spot_rate": 107.760002,
-          "expected_rate": 113.034967,
-          "base_rate": 0.05,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.6667
-        },
-        {
-          "pair": "CHFJPY=X",
-          "spot_rate": 184.455246,
-          "expected_rate": 187.03504,
-          "base_rate": 0.015,
-          "quote_rate": 0.001,
-          "deviation_pct": -1.3793
-        },
-        {
-          "pair": "EURAUD=X",
-          "spot_rate": 1.78465,
-          "expected_rate": 1.788072,
-          "base_rate": 0.045,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.1914
-        },
-        {
-          "pair": "EURCAD=X",
-          "spot_rate": 1.60345,
-          "expected_rate": 1.595814,
-          "base_rate": 0.045,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.4785
-        },
-        {
-          "pair": "AUDCAD=X",
-          "spot_rate": 0.89844,
-          "expected_rate": 0.89245,
-          "base_rate": 0.043,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.6711
-        },
-        {
-          "pair": "AUDCHF=X",
-          "spot_rate": 0.524887,
-          "expected_rate": 0.539367,
-          "base_rate": 0.043,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.6846
-        },
-        {
-          "pair": "CADCHF=X",
-          "spot_rate": 0.58411,
-          "expected_rate": 0.604252,
-          "base_rate": 0.05,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.3333
-        },
-        {
-          "pair": "GBPAUD=X",
-          "spot_rate": 2.05289,
-          "expected_rate": 2.070604,
-          "base_rate": 0.052,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.8555
-        },
-        {
-          "pair": "GBPCAD=X",
-          "spot_rate": 1.84465,
-          "expected_rate": 1.848164,
-          "base_rate": 0.052,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.1901
-        }
-      ],
-      "summary_stats": {
-        "total_pairs": 21,
-        "currencies_covered": 7,
-        "opportunities_found": 21,
-        "average_rate": 44.12854708944048,
-        "rate_std_dev": 72.66092970149992
-      },
-      "raw_data_sample": [
-        {
-          "pair": "USDEUR=X",
-          "rate": 0.8593999743461609,
-          "date": "2025-09-03"
-        },
-        {
-          "pair": "USDJPY=X",
-          "rate": 148.54800415039062,
-          "date": "2025-09-03"
-        },
-        {
-          "pair": "USDGBP=X",
-          "rate": 0.747189998626709,
-          "date": "2025-09-03"
-        },
-        {
-          "pair": "USDAUD=X",
-          "rate": 1.534142017364502,
-          "date": "2025-09-03"
-        },
-        {
-          "pair": "USDCAD=X",
-          "rate": 1.3784500360488892,
-          "date": "2025-09-03"
-        }
-      ]
-    },
-    {
-      "date": "2025-09-04",
-      "currency_values": {
-        "AUD": 1.351239865902039,
-        "CAD": 1.4969083143180857,
-        "CHF": 2.5686910439824797,
-        "EUR": 2.4074426100418704,
-        "GBP": 2.7751249538348075,
-        "JPY": 0.013953015477173385,
-        "USD": 2.064685541444
-      },
-      "arbitrage_opportunities": [
-        {
-          "pair": "USDEUR=X",
-          "spot_rate": 0.8576,
-          "expected_rate": 0.865807,
-          "base_rate": 0.055,
-          "quote_rate": 0.045,
-          "deviation_pct": -0.9479
-        },
-        {
-          "pair": "USDJPY=X",
-          "spot_rate": 147.979996,
-          "expected_rate": 155.962933,
-          "base_rate": 0.055,
-          "quote_rate": 0.001,
-          "deviation_pct": -5.1185
-        },
-        {
-          "pair": "USDGBP=X",
-          "spot_rate": 0.74396,
-          "expected_rate": 0.746082,
-          "base_rate": 0.055,
-          "quote_rate": 0.052,
-          "deviation_pct": -0.2844
-        },
-        {
-          "pair": "USDAUD=X",
-          "spot_rate": 1.528024,
-          "expected_rate": 1.545604,
-          "base_rate": 0.055,
-          "quote_rate": 0.043,
-          "deviation_pct": -1.1374
-        },
-        {
-          "pair": "USDCAD=X",
-          "spot_rate": 1.37931,
-          "expected_rate": 1.385878,
-          "base_rate": 0.055,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.4739
-        },
-        {
-          "pair": "USDCHF=X",
-          "spot_rate": 0.8038,
-          "expected_rate": 0.835477,
-          "base_rate": 0.055,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.7915
-        },
-        {
-          "pair": "EURGBP=X",
-          "spot_rate": 0.86746,
-          "expected_rate": 0.861688,
-          "base_rate": 0.045,
-          "quote_rate": 0.052,
-          "deviation_pct": 0.6699
-        },
-        {
-          "pair": "EURJPY=X",
-          "spot_rate": 172.546997,
-          "expected_rate": 180.13148,
-          "base_rate": 0.045,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.2105
-        },
-        {
-          "pair": "EURCHF=X",
-          "spot_rate": 0.93725,
-          "expected_rate": 0.964952,
-          "base_rate": 0.045,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.8708
-        },
-        {
-          "pair": "GBPJPY=X",
-          "spot_rate": 198.897003,
-          "expected_rate": 209.030617,
-          "base_rate": 0.052,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.8479
-        },
-        {
-          "pair": "GBPCHF=X",
-          "spot_rate": 1.08036,
-          "expected_rate": 1.119743,
-          "base_rate": 0.052,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.5171
-        },
-        {
-          "pair": "AUDJPY=X",
-          "spot_rate": 96.844002,
-          "expected_rate": 100.907386,
-          "base_rate": 0.043,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.0268
-        },
-        {
-          "pair": "CADJPY=X",
-          "spot_rate": 107.279999,
-          "expected_rate": 112.531467,
-          "base_rate": 0.05,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.6667
-        },
-        {
-          "pair": "CHFJPY=X",
-          "spot_rate": 184.074371,
-          "expected_rate": 186.648838,
-          "base_rate": 0.015,
-          "quote_rate": 0.001,
-          "deviation_pct": -1.3793
-        },
-        {
-          "pair": "EURAUD=X",
-          "spot_rate": 1.78159,
-          "expected_rate": 1.785006,
-          "base_rate": 0.045,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.1914
-        },
-        {
-          "pair": "EURCAD=X",
-          "spot_rate": 1.60826,
-          "expected_rate": 1.600602,
-          "base_rate": 0.045,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.4785
-        },
-        {
-          "pair": "AUDCAD=X",
-          "spot_rate": 0.90263,
-          "expected_rate": 0.896612,
-          "base_rate": 0.043,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.6711
-        },
-        {
-          "pair": "AUDCHF=X",
-          "spot_rate": 0.526,
-          "expected_rate": 0.54051,
-          "base_rate": 0.043,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.6846
-        },
-        {
-          "pair": "CADCHF=X",
-          "spot_rate": 0.58271,
-          "expected_rate": 0.602803,
-          "base_rate": 0.05,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.3333
-        },
-        {
-          "pair": "GBPAUD=X",
-          "spot_rate": 2.05354,
-          "expected_rate": 2.07126,
-          "base_rate": 0.052,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.8555
-        },
-        {
-          "pair": "GBPCAD=X",
-          "spot_rate": 1.85386,
-          "expected_rate": 1.857391,
-          "base_rate": 0.052,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.1901
-        }
-      ],
-      "summary_stats": {
-        "total_pairs": 21,
-        "currencies_covered": 7,
-        "opportunities_found": 21,
-        "average_rate": 44.05374866440182,
-        "rate_std_dev": 72.55002545317515
-      },
-      "raw_data_sample": [
-        {
-          "pair": "USDEUR=X",
-          "rate": 0.8575999736785889,
-          "date": "2025-09-04"
-        },
-        {
-          "pair": "USDJPY=X",
-          "rate": 147.97999572753906,
-          "date": "2025-09-04"
-        },
-        {
-          "pair": "USDGBP=X",
-          "rate": 0.7439600229263306,
-          "date": "2025-09-04"
-        },
-        {
-          "pair": "USDAUD=X",
-          "rate": 1.5280239582061768,
-          "date": "2025-09-04"
-        },
-        {
-          "pair": "USDCAD=X",
-          "rate": 1.3793100118637085,
-          "date": "2025-09-04"
-        }
-      ]
-    },
-    {
-      "date": "2025-09-05",
-      "currency_values": {
-        "AUD": 1.3483914631805574,
-        "CAD": 1.496542338914832,
-        "CHF": 2.568028171891498,
-        "EUR": 2.4099324002127114,
-        "GBP": 2.7794452271143326,
-        "JPY": 0.013934575439145365,
-        "USD": 2.0674665521381708
-      },
-      "arbitrage_opportunities": [
-        {
-          "pair": "USDEUR=X",
-          "spot_rate": 0.85786,
-          "expected_rate": 0.866069,
-          "base_rate": 0.055,
-          "quote_rate": 0.045,
-          "deviation_pct": -0.9479
-        },
-        {
-          "pair": "USDJPY=X",
-          "spot_rate": 148.375,
-          "expected_rate": 156.379246,
-          "base_rate": 0.055,
-          "quote_rate": 0.001,
-          "deviation_pct": -5.1185
-        },
-        {
-          "pair": "USDGBP=X",
-          "spot_rate": 0.7438,
-          "expected_rate": 0.745921,
-          "base_rate": 0.055,
-          "quote_rate": 0.052,
-          "deviation_pct": -0.2844
-        },
-        {
-          "pair": "USDAUD=X",
-          "spot_rate": 1.533272,
-          "expected_rate": 1.550913,
-          "base_rate": 0.055,
-          "quote_rate": 0.043,
-          "deviation_pct": -1.1374
-        },
-        {
-          "pair": "USDCAD=X",
-          "spot_rate": 1.3815,
-          "expected_rate": 1.388079,
-          "base_rate": 0.055,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.4739
-        },
-        {
-          "pair": "USDCHF=X",
-          "spot_rate": 0.80513,
-          "expected_rate": 0.836859,
-          "base_rate": 0.055,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.7915
-        },
-        {
-          "pair": "EURGBP=X",
-          "spot_rate": 0.86701,
-          "expected_rate": 0.861241,
-          "base_rate": 0.045,
-          "quote_rate": 0.052,
-          "deviation_pct": 0.6699
-        },
-        {
-          "pair": "EURJPY=X",
-          "spot_rate": 172.953995,
-          "expected_rate": 180.556368,
-          "base_rate": 0.045,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.2105
-        },
-        {
-          "pair": "EURCHF=X",
-          "spot_rate": 0.93847,
-          "expected_rate": 0.966208,
-          "base_rate": 0.045,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.8708
-        },
-        {
-          "pair": "GBPJPY=X",
-          "spot_rate": 199.468994,
-          "expected_rate": 209.63175,
-          "base_rate": 0.052,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.8479
-        },
-        {
-          "pair": "GBPCHF=X",
-          "spot_rate": 1.0823,
-          "expected_rate": 1.121753,
-          "base_rate": 0.052,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.5171
-        },
-        {
-          "pair": "AUDJPY=X",
-          "spot_rate": 96.766998,
-          "expected_rate": 100.827152,
-          "base_rate": 0.043,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.0268
-        },
-        {
-          "pair": "CADJPY=X",
-          "spot_rate": 107.396004,
-          "expected_rate": 112.653151,
-          "base_rate": 0.05,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.6667
-        },
-        {
-          "pair": "CHFJPY=X",
-          "spot_rate": 184.272995,
-          "expected_rate": 186.85024,
-          "base_rate": 0.015,
-          "quote_rate": 0.001,
-          "deviation_pct": -1.3793
-        },
-        {
-          "pair": "EURAUD=X",
-          "spot_rate": 1.78717,
-          "expected_rate": 1.790597,
-          "base_rate": 0.045,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.1914
-        },
-        {
-          "pair": "EURCAD=X",
-          "spot_rate": 1.61031,
-          "expected_rate": 1.602642,
-          "base_rate": 0.045,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.4785
-        },
-        {
-          "pair": "AUDCAD=X",
-          "spot_rate": 0.90093,
-          "expected_rate": 0.894924,
-          "base_rate": 0.043,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.6711
-        },
-        {
-          "pair": "AUDCHF=X",
-          "spot_rate": 0.52503,
-          "expected_rate": 0.539514,
-          "base_rate": 0.043,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.6846
-        },
-        {
-          "pair": "CADCHF=X",
-          "spot_rate": 0.5827,
-          "expected_rate": 0.602793,
-          "base_rate": 0.05,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.3333
-        },
-        {
-          "pair": "GBPAUD=X",
-          "spot_rate": 2.06113,
-          "expected_rate": 2.078915,
-          "base_rate": 0.052,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.8555
-        },
-        {
-          "pair": "GBPCAD=X",
-          "spot_rate": 1.8572,
-          "expected_rate": 1.860738,
-          "base_rate": 0.052,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.1901
-        }
-      ],
-      "summary_stats": {
-        "total_pairs": 21,
-        "currencies_covered": 7,
-        "opportunities_found": 21,
-        "average_rate": 44.13179990507307,
-        "rate_std_dev": 72.69607136880815
-      },
-      "raw_data_sample": [
-        {
-          "pair": "USDEUR=X",
-          "rate": 0.8578600287437439,
-          "date": "2025-09-05"
-        },
-        {
-          "pair": "USDJPY=X",
-          "rate": 148.375,
-          "date": "2025-09-05"
-        },
-        {
-          "pair": "USDGBP=X",
-          "rate": 0.7437999844551086,
-          "date": "2025-09-05"
-        },
-        {
-          "pair": "USDAUD=X",
-          "rate": 1.5332720279693604,
-          "date": "2025-09-05"
-        },
-        {
-          "pair": "USDCAD=X",
-          "rate": 1.381500005722046,
-          "date": "2025-09-05"
-        }
-      ]
-    },
-    {
-      "date": "2025-09-08",
-      "currency_values": {
-        "AUD": 1.3513460412990246,
-        "CAD": 1.490245367458902,
-        "CHF": 2.5798052175587345,
-        "EUR": 2.4147955784925452,
-        "GBP": 2.7817650444292115,
-        "JPY": 0.013898487281057196,
-        "USD": 2.0616758208134747
-      },
-      "arbitrage_opportunities": [
-        {
-          "pair": "USDEUR=X",
-          "spot_rate": 0.85374,
-          "expected_rate": 0.86191,
-          "base_rate": 0.055,
-          "quote_rate": 0.045,
-          "deviation_pct": -0.9479
-        },
-        {
-          "pair": "USDJPY=X",
-          "spot_rate": 148.343994,
-          "expected_rate": 156.346567,
-          "base_rate": 0.055,
-          "quote_rate": 0.001,
-          "deviation_pct": -5.1185
-        },
-        {
-          "pair": "USDGBP=X",
-          "spot_rate": 0.74113,
-          "expected_rate": 0.743243,
-          "base_rate": 0.055,
-          "quote_rate": 0.052,
-          "deviation_pct": -0.2844
-        },
-        {
-          "pair": "USDAUD=X",
-          "spot_rate": 1.525669,
-          "expected_rate": 1.543222,
-          "base_rate": 0.055,
-          "quote_rate": 0.043,
-          "deviation_pct": -1.1374
-        },
-        {
-          "pair": "USDCAD=X",
-          "spot_rate": 1.3834,
-          "expected_rate": 1.389988,
-          "base_rate": 0.055,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.4739
-        },
-        {
-          "pair": "USDCHF=X",
-          "spot_rate": 0.79918,
-          "expected_rate": 0.830675,
-          "base_rate": 0.055,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.7915
-        },
-        {
-          "pair": "EURGBP=X",
-          "spot_rate": 0.86804,
-          "expected_rate": 0.862264,
-          "base_rate": 0.045,
-          "quote_rate": 0.052,
-          "deviation_pct": 0.6699
-        },
-        {
-          "pair": "EURJPY=X",
-          "spot_rate": 173.755997,
-          "expected_rate": 181.393623,
-          "base_rate": 0.045,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.2105
-        },
-        {
-          "pair": "EURCHF=X",
-          "spot_rate": 0.93606,
-          "expected_rate": 0.963727,
-          "base_rate": 0.045,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.8708
-        },
-        {
-          "pair": "GBPJPY=X",
-          "spot_rate": 200.154007,
-          "expected_rate": 210.351664,
-          "base_rate": 0.052,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.8479
-        },
-        {
-          "pair": "GBPCHF=X",
-          "spot_rate": 1.07828,
-          "expected_rate": 1.117587,
-          "base_rate": 0.052,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.5171
-        },
-        {
-          "pair": "AUDJPY=X",
-          "spot_rate": 97.231003,
-          "expected_rate": 101.310625,
-          "base_rate": 0.043,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.0268
-        },
-        {
-          "pair": "CADJPY=X",
-          "spot_rate": 107.220001,
-          "expected_rate": 112.468533,
-          "base_rate": 0.05,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.6667
-        },
-        {
-          "pair": "CHFJPY=X",
-          "spot_rate": 185.597717,
-          "expected_rate": 188.19349,
-          "base_rate": 0.015,
-          "quote_rate": 0.001,
-          "deviation_pct": -1.3793
-        },
-        {
-          "pair": "EURAUD=X",
-          "spot_rate": 1.78685,
-          "expected_rate": 1.790276,
-          "base_rate": 0.045,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.1914
-        },
-        {
-          "pair": "EURCAD=X",
-          "spot_rate": 1.62038,
-          "expected_rate": 1.612664,
-          "base_rate": 0.045,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.4785
-        },
-        {
-          "pair": "AUDCAD=X",
-          "spot_rate": 0.90673,
-          "expected_rate": 0.900685,
-          "base_rate": 0.043,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.6711
-        },
-        {
-          "pair": "AUDCHF=X",
-          "spot_rate": 0.52379,
-          "expected_rate": 0.538239,
-          "base_rate": 0.043,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.6846
-        },
-        {
-          "pair": "CADCHF=X",
-          "spot_rate": 0.5776,
-          "expected_rate": 0.597517,
-          "base_rate": 0.05,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.3333
-        },
-        {
-          "pair": "GBPAUD=X",
-          "spot_rate": 2.05838,
-          "expected_rate": 2.076142,
-          "base_rate": 0.052,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.8555
-        },
-        {
-          "pair": "GBPCAD=X",
-          "spot_rate": 1.86662,
-          "expected_rate": 1.870175,
-          "base_rate": 0.052,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.1901
-        }
-      ],
-      "summary_stats": {
-        "total_pairs": 21,
-        "currencies_covered": 7,
-        "opportunities_found": 21,
-        "average_rate": 44.277550850595745,
-        "rate_std_dev": 72.97554779105562
-      },
-      "raw_data_sample": [
-        {
-          "pair": "USDEUR=X",
-          "rate": 0.8537399768829346,
-          "date": "2025-09-08"
-        },
-        {
-          "pair": "USDJPY=X",
-          "rate": 148.343994140625,
-          "date": "2025-09-08"
-        },
-        {
-          "pair": "USDGBP=X",
-          "rate": 0.741129994392395,
-          "date": "2025-09-08"
-        },
-        {
-          "pair": "USDAUD=X",
-          "rate": 1.525668978691101,
-          "date": "2025-09-08"
-        },
-        {
-          "pair": "USDCAD=X",
-          "rate": 1.3833999633789062,
-          "date": "2025-09-08"
-        }
-      ]
-    },
-    {
-      "date": "2025-09-09",
-      "currency_values": {
-        "AUD": 1.353810752388737,
-        "CAD": 1.4874710301584055,
-        "CHF": 2.5882674765094227,
-        "EUR": 2.41477068216564,
-        "GBP": 2.7807705920582735,
-        "JPY": 0.01392479484980904,
-        "USD": 2.0518920446066886
-      },
-      "arbitrage_opportunities": [
-        {
-          "pair": "USDEUR=X",
-          "spot_rate": 0.84968,
-          "expected_rate": 0.857811,
-          "base_rate": 0.055,
-          "quote_rate": 0.045,
-          "deviation_pct": -0.9479
-        },
-        {
-          "pair": "USDJPY=X",
-          "spot_rate": 147.363998,
-          "expected_rate": 155.313705,
-          "base_rate": 0.055,
-          "quote_rate": 0.001,
-          "deviation_pct": -5.1185
-        },
-        {
-          "pair": "USDGBP=X",
-          "spot_rate": 0.73784,
-          "expected_rate": 0.739944,
-          "base_rate": 0.055,
-          "quote_rate": 0.052,
-          "deviation_pct": -0.2844
-        },
-        {
-          "pair": "USDAUD=X",
-          "spot_rate": 1.51559,
-          "expected_rate": 1.533027,
-          "base_rate": 0.055,
-          "quote_rate": 0.043,
-          "deviation_pct": -1.1374
-        },
-        {
-          "pair": "USDCAD=X",
-          "spot_rate": 1.3795,
-          "expected_rate": 1.386069,
-          "base_rate": 0.055,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.4739
-        },
-        {
-          "pair": "USDCHF=X",
-          "spot_rate": 0.79281,
-          "expected_rate": 0.824054,
-          "base_rate": 0.055,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.7915
-        },
-        {
-          "pair": "EURGBP=X",
-          "spot_rate": 0.86833,
-          "expected_rate": 0.862552,
-          "base_rate": 0.045,
-          "quote_rate": 0.052,
-          "deviation_pct": 0.6699
-        },
-        {
-          "pair": "EURJPY=X",
-          "spot_rate": 173.429993,
-          "expected_rate": 181.053289,
-          "base_rate": 0.045,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.2105
-        },
-        {
-          "pair": "EURCHF=X",
-          "spot_rate": 0.93301,
-          "expected_rate": 0.960587,
-          "base_rate": 0.045,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.8708
-        },
-        {
-          "pair": "GBPJPY=X",
-          "spot_rate": 199.710007,
-          "expected_rate": 209.885042,
-          "base_rate": 0.052,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.8479
-        },
-        {
-          "pair": "GBPCHF=X",
-          "spot_rate": 1.07438,
-          "expected_rate": 1.113545,
-          "base_rate": 0.052,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.5171
-        },
-        {
-          "pair": "AUDJPY=X",
-          "spot_rate": 97.223,
-          "expected_rate": 101.302286,
-          "base_rate": 0.043,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.0268
-        },
-        {
-          "pair": "CADJPY=X",
-          "spot_rate": 106.810997,
-          "expected_rate": 112.039507,
-          "base_rate": 0.05,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.6667
-        },
-        {
-          "pair": "CHFJPY=X",
-          "spot_rate": 185.856583,
-          "expected_rate": 188.455975,
-          "base_rate": 0.015,
-          "quote_rate": 0.001,
-          "deviation_pct": -1.3793
-        },
-        {
-          "pair": "EURAUD=X",
-          "spot_rate": 1.78358,
-          "expected_rate": 1.787,
-          "base_rate": 0.045,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.1914
-        },
-        {
-          "pair": "EURCAD=X",
-          "spot_rate": 1.6233,
-          "expected_rate": 1.61557,
-          "base_rate": 0.045,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.4785
-        },
-        {
-          "pair": "AUDCAD=X",
-          "spot_rate": 0.91016,
-          "expected_rate": 0.904092,
-          "base_rate": 0.043,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.6711
-        },
-        {
-          "pair": "AUDCHF=X",
-          "spot_rate": 0.52304,
-          "expected_rate": 0.537469,
-          "base_rate": 0.043,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.6846
-        },
-        {
-          "pair": "CADCHF=X",
-          "spot_rate": 0.5746,
-          "expected_rate": 0.594414,
-          "base_rate": 0.05,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.3333
-        },
-        {
-          "pair": "GBPAUD=X",
-          "spot_rate": 2.054195,
-          "expected_rate": 2.07192,
-          "base_rate": 0.052,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.8555
-        },
-        {
-          "pair": "GBPCAD=X",
-          "spot_rate": 1.868976,
-          "expected_rate": 1.872536,
-          "base_rate": 0.052,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.1901
-        }
-      ],
-      "summary_stats": {
-        "total_pairs": 21,
-        "currencies_covered": 7,
-        "opportunities_found": 21,
-        "average_rate": 44.1849318033173,
-        "rate_std_dev": 72.83787818109332
-      },
-      "raw_data_sample": [
-        {
-          "pair": "USDEUR=X",
-          "rate": 0.8496800065040588,
-          "date": "2025-09-09"
-        },
-        {
-          "pair": "USDJPY=X",
-          "rate": 147.36399841308594,
-          "date": "2025-09-09"
-        },
-        {
-          "pair": "USDGBP=X",
-          "rate": 0.7378399968147278,
-          "date": "2025-09-09"
-        },
-        {
-          "pair": "USDAUD=X",
-          "rate": 1.515589952468872,
-          "date": "2025-09-09"
-        },
-        {
-          "pair": "USDCAD=X",
-          "rate": 1.3795000314712524,
-          "date": "2025-09-09"
-        }
-      ]
-    },
-    {
-      "date": "2025-09-10",
-      "currency_values": {
-        "AUD": 1.3549216116148515,
-        "CAD": 1.4861030445020618,
-        "CHF": 2.5806389532987954,
-        "EUR": 2.4079764277913993,
-        "GBP": 2.7820059896666804,
-        "JPY": 0.013961353293136343,
-        "USD": 2.0576516304843313
-      },
-      "arbitrage_opportunities": [
-        {
-          "pair": "USDEUR=X",
-          "spot_rate": 0.8545,
-          "expected_rate": 0.862677,
-          "base_rate": 0.055,
-          "quote_rate": 0.045,
-          "deviation_pct": -0.9479
-        },
-        {
-          "pair": "USDJPY=X",
-          "spot_rate": 147.391998,
-          "expected_rate": 155.343215,
-          "base_rate": 0.055,
-          "quote_rate": 0.001,
-          "deviation_pct": -5.1185
-        },
-        {
-          "pair": "USDGBP=X",
-          "spot_rate": 0.739585,
-          "expected_rate": 0.741694,
-          "base_rate": 0.055,
-          "quote_rate": 0.052,
-          "deviation_pct": -0.2844
-        },
-        {
-          "pair": "USDAUD=X",
-          "spot_rate": 1.518672,
-          "expected_rate": 1.536145,
-          "base_rate": 0.055,
-          "quote_rate": 0.043,
-          "deviation_pct": -1.1374
-        },
-        {
-          "pair": "USDCAD=X",
-          "spot_rate": 1.38466,
-          "expected_rate": 1.391254,
-          "base_rate": 0.055,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.4739
-        },
-        {
-          "pair": "USDCHF=X",
-          "spot_rate": 0.7973,
-          "expected_rate": 0.828721,
-          "base_rate": 0.055,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.7915
-        },
-        {
-          "pair": "EURGBP=X",
-          "spot_rate": 0.8655,
-          "expected_rate": 0.859741,
-          "base_rate": 0.045,
-          "quote_rate": 0.052,
-          "deviation_pct": 0.6699
-        },
-        {
-          "pair": "EURJPY=X",
-          "spot_rate": 172.481003,
-          "expected_rate": 180.062585,
-          "base_rate": 0.045,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.2105
-        },
-        {
-          "pair": "EURCHF=X",
-          "spot_rate": 0.9332,
-          "expected_rate": 0.960782,
-          "base_rate": 0.045,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.8708
-        },
-        {
-          "pair": "GBPJPY=X",
-          "spot_rate": 199.285995,
-          "expected_rate": 209.439428,
-          "base_rate": 0.052,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.8479
-        },
-        {
-          "pair": "GBPCHF=X",
-          "spot_rate": 1.0778,
-          "expected_rate": 1.117089,
-          "base_rate": 0.052,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.5171
-        },
-        {
-          "pair": "AUDJPY=X",
-          "spot_rate": 97.046997,
-          "expected_rate": 101.118899,
-          "base_rate": 0.043,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.0268
-        },
-        {
-          "pair": "CADJPY=X",
-          "spot_rate": 106.439003,
-          "expected_rate": 111.649304,
-          "base_rate": 0.05,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.6667
-        },
-        {
-          "pair": "CHFJPY=X",
-          "spot_rate": 184.813004,
-          "expected_rate": 187.397801,
-          "base_rate": 0.015,
-          "quote_rate": 0.001,
-          "deviation_pct": -1.3793
-        },
-        {
-          "pair": "EURAUD=X",
-          "spot_rate": 1.77707,
-          "expected_rate": 1.780478,
-          "base_rate": 0.045,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.1914
-        },
-        {
-          "pair": "EURCAD=X",
-          "spot_rate": 1.62028,
-          "expected_rate": 1.612564,
-          "base_rate": 0.045,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.4785
-        },
-        {
-          "pair": "AUDCAD=X",
-          "spot_rate": 0.91169,
-          "expected_rate": 0.905612,
-          "base_rate": 0.043,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.6711
-        },
-        {
-          "pair": "AUDCHF=X",
-          "spot_rate": 0.52501,
-          "expected_rate": 0.539493,
-          "base_rate": 0.043,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.6846
-        },
-        {
-          "pair": "CADCHF=X",
-          "spot_rate": 0.57589,
-          "expected_rate": 0.595748,
-          "base_rate": 0.05,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.3333
-        },
-        {
-          "pair": "GBPAUD=X",
-          "spot_rate": 2.05319,
-          "expected_rate": 2.070907,
-          "base_rate": 0.052,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.8555
-        },
-        {
-          "pair": "GBPCAD=X",
-          "spot_rate": 1.87205,
-          "expected_rate": 1.875616,
-          "base_rate": 0.052,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.1901
-        }
-      ],
-      "summary_stats": {
-        "total_pairs": 21,
-        "currencies_covered": 7,
-        "opportunities_found": 21,
-        "average_rate": 44.0459236786479,
-        "rate_std_dev": 72.58621822366955
-      },
-      "raw_data_sample": [
-        {
-          "pair": "USDEUR=X",
-          "rate": 0.8544999957084656,
-          "date": "2025-09-10"
-        },
-        {
-          "pair": "USDJPY=X",
-          "rate": 147.39199829101562,
-          "date": "2025-09-10"
-        },
-        {
-          "pair": "USDGBP=X",
-          "rate": 0.7395849823951721,
-          "date": "2025-09-10"
-        },
-        {
-          "pair": "USDAUD=X",
-          "rate": 1.518671989440918,
-          "date": "2025-09-10"
-        },
-        {
-          "pair": "USDCAD=X",
-          "rate": 1.384660005569458,
-          "date": "2025-09-10"
-        }
-      ]
-    },
-    {
-      "date": "2025-09-11",
-      "currency_values": {
-        "AUD": 1.3612400269244367,
-        "CAD": 1.4836490717991686,
-        "CHF": 2.575018829743801,
-        "EUR": 2.4067270868863724,
-        "GBP": 2.7832868512644646,
-        "JPY": 0.013958700353797053,
-        "USD": 2.0564771694425583
-      },
-      "arbitrage_opportunities": [
-        {
-          "pair": "USDEUR=X",
-          "spot_rate": 0.85445,
-          "expected_rate": 0.862627,
-          "base_rate": 0.055,
-          "quote_rate": 0.045,
-          "deviation_pct": -0.9479
-        },
-        {
-          "pair": "USDJPY=X",
-          "spot_rate": 147.332001,
-          "expected_rate": 155.279981,
-          "base_rate": 0.055,
-          "quote_rate": 0.001,
-          "deviation_pct": -5.1185
-        },
-        {
-          "pair": "USDGBP=X",
-          "spot_rate": 0.73884,
-          "expected_rate": 0.740947,
-          "base_rate": 0.055,
-          "quote_rate": 0.052,
-          "deviation_pct": -0.2844
-        },
-        {
-          "pair": "USDAUD=X",
-          "spot_rate": 1.51073,
-          "expected_rate": 1.528111,
-          "base_rate": 0.055,
-          "quote_rate": 0.043,
-          "deviation_pct": -1.1374
-        },
-        {
-          "pair": "USDCAD=X",
-          "spot_rate": 1.38605,
-          "expected_rate": 1.39265,
-          "base_rate": 0.055,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.4739
-        },
-        {
-          "pair": "USDCHF=X",
-          "spot_rate": 0.79867,
-          "expected_rate": 0.830145,
-          "base_rate": 0.055,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.7915
-        },
-        {
-          "pair": "EURGBP=X",
-          "spot_rate": 0.86466,
-          "expected_rate": 0.858907,
-          "base_rate": 0.045,
-          "quote_rate": 0.052,
-          "deviation_pct": 0.6699
-        },
-        {
-          "pair": "EURJPY=X",
-          "spot_rate": 172.438004,
-          "expected_rate": 180.017696,
-          "base_rate": 0.045,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.2105
-        },
-        {
-          "pair": "EURCHF=X",
-          "spot_rate": 0.93464,
-          "expected_rate": 0.962265,
-          "base_rate": 0.045,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.8708
-        },
-        {
-          "pair": "GBPJPY=X",
-          "spot_rate": 199.404999,
-          "expected_rate": 209.564494,
-          "base_rate": 0.052,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.8479
-        },
-        {
-          "pair": "GBPCHF=X",
-          "spot_rate": 1.08085,
-          "expected_rate": 1.12025,
-          "base_rate": 0.052,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.5171
-        },
-        {
-          "pair": "AUDJPY=X",
-          "spot_rate": 97.519997,
-          "expected_rate": 101.611745,
-          "base_rate": 0.043,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.0268
-        },
-        {
-          "pair": "CADJPY=X",
-          "spot_rate": 106.269997,
-          "expected_rate": 111.472024,
-          "base_rate": 0.05,
-          "quote_rate": 0.001,
-          "deviation_pct": -4.6667
-        },
-        {
-          "pair": "CHFJPY=X",
-          "spot_rate": 184.465286,
-          "expected_rate": 187.04522,
-          "base_rate": 0.015,
-          "quote_rate": 0.001,
-          "deviation_pct": -1.3793
-        },
-        {
-          "pair": "EURAUD=X",
-          "spot_rate": 1.768,
-          "expected_rate": 1.77139,
-          "base_rate": 0.045,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.1914
-        },
-        {
-          "pair": "EURCAD=X",
-          "spot_rate": 1.62207,
-          "expected_rate": 1.614346,
-          "base_rate": 0.045,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.4785
-        },
-        {
-          "pair": "AUDCAD=X",
-          "spot_rate": 0.9174,
-          "expected_rate": 0.911284,
-          "base_rate": 0.043,
-          "quote_rate": 0.05,
-          "deviation_pct": 0.6711
-        },
-        {
-          "pair": "AUDCHF=X",
-          "spot_rate": 0.528642,
-          "expected_rate": 0.543225,
-          "base_rate": 0.043,
-          "quote_rate": 0.015,
-          "deviation_pct": -2.6846
-        },
-        {
-          "pair": "CADCHF=X",
-          "spot_rate": 0.57612,
-          "expected_rate": 0.595986,
-          "base_rate": 0.05,
-          "quote_rate": 0.015,
-          "deviation_pct": -3.3333
-        },
-        {
-          "pair": "GBPAUD=X",
-          "spot_rate": 2.04457,
-          "expected_rate": 2.062212,
-          "base_rate": 0.052,
-          "quote_rate": 0.043,
-          "deviation_pct": -0.8555
-        },
-        {
-          "pair": "GBPCAD=X",
-          "spot_rate": 1.87585,
-          "expected_rate": 1.879423,
-          "base_rate": 0.052,
-          "quote_rate": 0.05,
-          "deviation_pct": -0.1901
-        }
-      ],
-      "summary_stats": {
-        "total_pairs": 21,
-        "currencies_covered": 7,
-        "opportunities_found": 21,
-        "average_rate": 44.044372595491865,
-        "rate_std_dev": 72.56742196952172
-      },
-      "raw_data_sample": [
-        {
-          "pair": "USDEUR=X",
-          "rate": 0.854449987411499,
-          "date": "2025-09-11"
-        },
-        {
-          "pair": "USDJPY=X",
-          "rate": 147.33200073242188,
-          "date": "2025-09-11"
-        },
-        {
-          "pair": "USDGBP=X",
-          "rate": 0.7388399839401245,
-          "date": "2025-09-11"
-        },
-        {
-          "pair": "USDAUD=X",
-          "rate": 1.5107300281524658,
-          "date": "2025-09-11"
-        },
-        {
-          "pair": "USDCAD=X",
-          "rate": 1.3860499858856201,
-          "date": "2025-09-11"
-        }
-      ]
-    },
     {
       "date": "2025-09-12",
       "currency_values": {
@@ -4771,11 +3043,1523 @@
           "date": "2025-10-01"
         }
       ]
+    },
+    {
+      "date": "2025-10-02",
+      "currency_values": {
+        "AUD": 1.3610881340097656,
+        "CAD": 1.4761492175589,
+        "CHF": 2.5821641379250364,
+        "EUR": 2.4142694608560338,
+        "GBP": 2.7735392135986414,
+        "JPY": 0.013990095097811212,
+        "USD": 2.057590416008471
+      },
+      "arbitrage_opportunities": [
+        {
+          "pair": "USDEUR=X",
+          "spot_rate": 0.85222,
+          "expected_rate": 0.860375,
+          "base_rate": 0.055,
+          "quote_rate": 0.045,
+          "deviation_pct": -0.9479
+        },
+        {
+          "pair": "USDJPY=X",
+          "spot_rate": 147.082993,
+          "expected_rate": 155.01754,
+          "base_rate": 0.055,
+          "quote_rate": 0.001,
+          "deviation_pct": -5.1185
+        },
+        {
+          "pair": "USDGBP=X",
+          "spot_rate": 0.74183,
+          "expected_rate": 0.743945,
+          "base_rate": 0.055,
+          "quote_rate": 0.052,
+          "deviation_pct": -0.2844
+        },
+        {
+          "pair": "USDAUD=X",
+          "spot_rate": 1.511602,
+          "expected_rate": 1.528993,
+          "base_rate": 0.055,
+          "quote_rate": 0.043,
+          "deviation_pct": -1.1374
+        },
+        {
+          "pair": "USDCAD=X",
+          "spot_rate": 1.39395,
+          "expected_rate": 1.400588,
+          "base_rate": 0.055,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.4739
+        },
+        {
+          "pair": "USDCHF=X",
+          "spot_rate": 0.79691,
+          "expected_rate": 0.828315,
+          "base_rate": 0.055,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.7915
+        },
+        {
+          "pair": "EURGBP=X",
+          "spot_rate": 0.87041,
+          "expected_rate": 0.864618,
+          "base_rate": 0.045,
+          "quote_rate": 0.052,
+          "deviation_pct": 0.6699
+        },
+        {
+          "pair": "EURJPY=X",
+          "spot_rate": 172.576996,
+          "expected_rate": 180.162798,
+          "base_rate": 0.045,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.2105
+        },
+        {
+          "pair": "EURCHF=X",
+          "spot_rate": 0.93502,
+          "expected_rate": 0.962656,
+          "base_rate": 0.045,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.8708
+        },
+        {
+          "pair": "GBPJPY=X",
+          "spot_rate": 198.259995,
+          "expected_rate": 208.361153,
+          "base_rate": 0.052,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.8479
+        },
+        {
+          "pair": "GBPCHF=X",
+          "spot_rate": 1.07411,
+          "expected_rate": 1.113265,
+          "base_rate": 0.052,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.5171
+        },
+        {
+          "pair": "AUDJPY=X",
+          "spot_rate": 97.289001,
+          "expected_rate": 101.371057,
+          "base_rate": 0.043,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.0268
+        },
+        {
+          "pair": "CADJPY=X",
+          "spot_rate": 105.510002,
+          "expected_rate": 110.674827,
+          "base_rate": 0.05,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.6667
+        },
+        {
+          "pair": "CHFJPY=X",
+          "spot_rate": 184.551468,
+          "expected_rate": 187.132607,
+          "base_rate": 0.015,
+          "quote_rate": 0.001,
+          "deviation_pct": -1.3793
+        },
+        {
+          "pair": "EURAUD=X",
+          "spot_rate": 1.77363,
+          "expected_rate": 1.777031,
+          "base_rate": 0.045,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.1914
+        },
+        {
+          "pair": "EURCAD=X",
+          "spot_rate": 1.63554,
+          "expected_rate": 1.627752,
+          "base_rate": 0.045,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.4785
+        },
+        {
+          "pair": "AUDCAD=X",
+          "spot_rate": 0.92186,
+          "expected_rate": 0.915714,
+          "base_rate": 0.043,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.6711
+        },
+        {
+          "pair": "AUDCHF=X",
+          "spot_rate": 0.52705,
+          "expected_rate": 0.541589,
+          "base_rate": 0.043,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.6846
+        },
+        {
+          "pair": "CADCHF=X",
+          "spot_rate": 0.57161,
+          "expected_rate": 0.591321,
+          "base_rate": 0.05,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.3333
+        },
+        {
+          "pair": "GBPAUD=X",
+          "spot_rate": 2.0374,
+          "expected_rate": 2.054981,
+          "base_rate": 0.052,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.8555
+        },
+        {
+          "pair": "GBPCAD=X",
+          "spot_rate": 1.87892,
+          "expected_rate": 1.882499,
+          "base_rate": 0.052,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.1901
+        }
+      ],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 21,
+        "average_rate": 43.942500784283595,
+        "rate_std_dev": 72.40651804857623
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8522199988365173,
+          "date": "2025-10-02"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.08299255371094,
+          "date": "2025-10-02"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7418299913406372,
+          "date": "2025-10-02"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5116020441055298,
+          "date": "2025-10-02"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3939499855041504,
+          "date": "2025-10-02"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-03",
+      "currency_values": {
+        "AUD": 1.3591128309756229,
+        "CAD": 1.4755805226499206,
+        "CHF": 2.584585740765539,
+        "EUR": 2.415170225287517,
+        "GBP": 2.7698741134630906,
+        "JPY": 0.013999954681490718,
+        "USD": 2.059947832610716
+      },
+      "arbitrage_opportunities": [
+        {
+          "pair": "USDEUR=X",
+          "spot_rate": 0.85287,
+          "expected_rate": 0.861031,
+          "base_rate": 0.055,
+          "quote_rate": 0.045,
+          "deviation_pct": -0.9479
+        },
+        {
+          "pair": "USDJPY=X",
+          "spot_rate": 147.149994,
+          "expected_rate": 155.088155,
+          "base_rate": 0.055,
+          "quote_rate": 0.001,
+          "deviation_pct": -5.1185
+        },
+        {
+          "pair": "USDGBP=X",
+          "spot_rate": 0.74368,
+          "expected_rate": 0.745801,
+          "base_rate": 0.055,
+          "quote_rate": 0.052,
+          "deviation_pct": -0.2844
+        },
+        {
+          "pair": "USDAUD=X",
+          "spot_rate": 1.51559,
+          "expected_rate": 1.533027,
+          "base_rate": 0.055,
+          "quote_rate": 0.043,
+          "deviation_pct": -1.1374
+        },
+        {
+          "pair": "USDCAD=X",
+          "spot_rate": 1.39609,
+          "expected_rate": 1.402738,
+          "base_rate": 0.055,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.4739
+        },
+        {
+          "pair": "USDCHF=X",
+          "spot_rate": 0.79702,
+          "expected_rate": 0.82843,
+          "base_rate": 0.055,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.7915
+        },
+        {
+          "pair": "EURGBP=X",
+          "spot_rate": 0.87193,
+          "expected_rate": 0.866128,
+          "base_rate": 0.045,
+          "quote_rate": 0.052,
+          "deviation_pct": 0.6699
+        },
+        {
+          "pair": "EURJPY=X",
+          "spot_rate": 172.529007,
+          "expected_rate": 180.1127,
+          "base_rate": 0.045,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.2105
+        },
+        {
+          "pair": "EURCHF=X",
+          "spot_rate": 0.9345,
+          "expected_rate": 0.962121,
+          "base_rate": 0.045,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.8708
+        },
+        {
+          "pair": "GBPJPY=X",
+          "spot_rate": 197.860001,
+          "expected_rate": 207.94078,
+          "base_rate": 0.052,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.8479
+        },
+        {
+          "pair": "GBPCHF=X",
+          "spot_rate": 1.07168,
+          "expected_rate": 1.110746,
+          "base_rate": 0.052,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.5171
+        },
+        {
+          "pair": "AUDJPY=X",
+          "spot_rate": 97.072998,
+          "expected_rate": 101.145991,
+          "base_rate": 0.043,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.0268
+        },
+        {
+          "pair": "CADJPY=X",
+          "spot_rate": 105.393997,
+          "expected_rate": 110.553144,
+          "base_rate": 0.05,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.6667
+        },
+        {
+          "pair": "CHFJPY=X",
+          "spot_rate": 184.594559,
+          "expected_rate": 187.176301,
+          "base_rate": 0.015,
+          "quote_rate": 0.001,
+          "deviation_pct": -1.3793
+        },
+        {
+          "pair": "EURAUD=X",
+          "spot_rate": 1.77707,
+          "expected_rate": 1.780478,
+          "base_rate": 0.045,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.1914
+        },
+        {
+          "pair": "EURCAD=X",
+          "spot_rate": 1.6364,
+          "expected_rate": 1.628608,
+          "base_rate": 0.045,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.4785
+        },
+        {
+          "pair": "AUDCAD=X",
+          "spot_rate": 0.921044,
+          "expected_rate": 0.914904,
+          "base_rate": 0.043,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.6711
+        },
+        {
+          "pair": "AUDCHF=X",
+          "spot_rate": 0.52585,
+          "expected_rate": 0.540356,
+          "base_rate": 0.043,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.6846
+        },
+        {
+          "pair": "CADCHF=X",
+          "spot_rate": 0.57083,
+          "expected_rate": 0.590514,
+          "base_rate": 0.05,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.3333
+        },
+        {
+          "pair": "GBPAUD=X",
+          "spot_rate": 2.03782,
+          "expected_rate": 2.055404,
+          "base_rate": 0.052,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.8555
+        },
+        {
+          "pair": "GBPCAD=X",
+          "spot_rate": 1.87715,
+          "expected_rate": 1.880726,
+          "base_rate": 0.052,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.1901
+        }
+      ],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 21,
+        "average_rate": 43.910956167039416,
+        "rate_std_dev": 72.35553354049068
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.852869987487793,
+          "date": "2025-10-03"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 147.14999389648438,
+          "date": "2025-10-03"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7436800003051758,
+          "date": "2025-10-03"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.515589952468872,
+          "date": "2025-10-03"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.396090030670166,
+          "date": "2025-10-03"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-06",
+      "currency_values": {
+        "AUD": 1.362049741172135,
+        "CAD": 1.4792934020757251,
+        "CHF": 2.5914622094334696,
+        "EUR": 2.419341777130722,
+        "GBP": 2.7749874155885332,
+        "JPY": 0.013808990189986568,
+        "USD": 2.0657971208168244
+      },
+      "arbitrage_opportunities": [
+        {
+          "pair": "USDEUR=X",
+          "spot_rate": 0.85379,
+          "expected_rate": 0.86196,
+          "base_rate": 0.055,
+          "quote_rate": 0.045,
+          "deviation_pct": -0.9479
+        },
+        {
+          "pair": "USDJPY=X",
+          "spot_rate": 149.606003,
+          "expected_rate": 157.676656,
+          "base_rate": 0.055,
+          "quote_rate": 0.001,
+          "deviation_pct": -5.1185
+        },
+        {
+          "pair": "USDGBP=X",
+          "spot_rate": 0.74439,
+          "expected_rate": 0.746513,
+          "base_rate": 0.055,
+          "quote_rate": 0.052,
+          "deviation_pct": -0.2844
+        },
+        {
+          "pair": "USDAUD=X",
+          "spot_rate": 1.516737,
+          "expected_rate": 1.534187,
+          "base_rate": 0.055,
+          "quote_rate": 0.043,
+          "deviation_pct": -1.1374
+        },
+        {
+          "pair": "USDCAD=X",
+          "spot_rate": 1.3965,
+          "expected_rate": 1.40315,
+          "base_rate": 0.055,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.4739
+        },
+        {
+          "pair": "USDCHF=X",
+          "spot_rate": 0.79719,
+          "expected_rate": 0.828606,
+          "base_rate": 0.055,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.7915
+        },
+        {
+          "pair": "EURGBP=X",
+          "spot_rate": 0.87178,
+          "expected_rate": 0.865979,
+          "base_rate": 0.045,
+          "quote_rate": 0.052,
+          "deviation_pct": 0.6699
+        },
+        {
+          "pair": "EURJPY=X",
+          "spot_rate": 175.212006,
+          "expected_rate": 182.913632,
+          "base_rate": 0.045,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.2105
+        },
+        {
+          "pair": "EURCHF=X",
+          "spot_rate": 0.93364,
+          "expected_rate": 0.961235,
+          "base_rate": 0.045,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.8708
+        },
+        {
+          "pair": "GBPJPY=X",
+          "spot_rate": 200.960007,
+          "expected_rate": 211.198728,
+          "base_rate": 0.052,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.8479
+        },
+        {
+          "pair": "GBPCHF=X",
+          "spot_rate": 1.07078,
+          "expected_rate": 1.109813,
+          "base_rate": 0.052,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.5171
+        },
+        {
+          "pair": "AUDJPY=X",
+          "spot_rate": 98.633003,
+          "expected_rate": 102.771451,
+          "base_rate": 0.043,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.0268
+        },
+        {
+          "pair": "CADJPY=X",
+          "spot_rate": 107.120003,
+          "expected_rate": 112.363639,
+          "base_rate": 0.05,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.6667
+        },
+        {
+          "pair": "CHFJPY=X",
+          "spot_rate": 187.651138,
+          "expected_rate": 190.27563,
+          "base_rate": 0.015,
+          "quote_rate": 0.001,
+          "deviation_pct": -1.3793
+        },
+        {
+          "pair": "EURAUD=X",
+          "spot_rate": 1.77607,
+          "expected_rate": 1.779476,
+          "base_rate": 0.045,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.1914
+        },
+        {
+          "pair": "EURCAD=X",
+          "spot_rate": 1.63539,
+          "expected_rate": 1.627602,
+          "base_rate": 0.045,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.4785
+        },
+        {
+          "pair": "AUDCAD=X",
+          "spot_rate": 0.92063,
+          "expected_rate": 0.914492,
+          "base_rate": 0.043,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.6711
+        },
+        {
+          "pair": "AUDCHF=X",
+          "spot_rate": 0.525593,
+          "expected_rate": 0.540092,
+          "base_rate": 0.043,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.6846
+        },
+        {
+          "pair": "CADCHF=X",
+          "spot_rate": 0.57075,
+          "expected_rate": 0.590431,
+          "base_rate": 0.05,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.3333
+        },
+        {
+          "pair": "GBPAUD=X",
+          "spot_rate": 2.03721,
+          "expected_rate": 2.054789,
+          "base_rate": 0.052,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.8555
+        },
+        {
+          "pair": "GBPCAD=X",
+          "spot_rate": 1.87581,
+          "expected_rate": 1.879383,
+          "base_rate": 0.052,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.1901
+        }
+      ],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 21,
+        "average_rate": 44.60516283057985,
+        "rate_std_dev": 73.52690142194449
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8537899851799011,
+          "date": "2025-10-06"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 149.6060028076172,
+          "date": "2025-10-06"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7443900108337402,
+          "date": "2025-10-06"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5167369842529297,
+          "date": "2025-10-06"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3964999914169312,
+          "date": "2025-10-06"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-07",
+      "currency_values": {
+        "AUD": 1.365557628231814,
+        "CAD": 1.4799251173019887,
+        "CHF": 2.5964058924718136,
+        "EUR": 2.416738642083521,
+        "GBP": 2.7829970330121068,
+        "JPY": 0.013729459267041763,
+        "USD": 2.0638673360425464
+      },
+      "arbitrage_opportunities": [
+        {
+          "pair": "USDEUR=X",
+          "spot_rate": 0.85395,
+          "expected_rate": 0.862122,
+          "base_rate": 0.055,
+          "quote_rate": 0.045,
+          "deviation_pct": -0.9479
+        },
+        {
+          "pair": "USDJPY=X",
+          "spot_rate": 150.330994,
+          "expected_rate": 158.440758,
+          "base_rate": 0.055,
+          "quote_rate": 0.001,
+          "deviation_pct": -5.1185
+        },
+        {
+          "pair": "USDGBP=X",
+          "spot_rate": 0.74157,
+          "expected_rate": 0.743685,
+          "base_rate": 0.055,
+          "quote_rate": 0.052,
+          "deviation_pct": -0.2844
+        },
+        {
+          "pair": "USDAUD=X",
+          "spot_rate": 1.511373,
+          "expected_rate": 1.528762,
+          "base_rate": 0.055,
+          "quote_rate": 0.043,
+          "deviation_pct": -1.1374
+        },
+        {
+          "pair": "USDCAD=X",
+          "spot_rate": 1.3946,
+          "expected_rate": 1.401241,
+          "base_rate": 0.055,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.4739
+        },
+        {
+          "pair": "USDCHF=X",
+          "spot_rate": 0.79491,
+          "expected_rate": 0.826237,
+          "base_rate": 0.055,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.7915
+        },
+        {
+          "pair": "EURGBP=X",
+          "spot_rate": 0.86836,
+          "expected_rate": 0.862582,
+          "base_rate": 0.045,
+          "quote_rate": 0.052,
+          "deviation_pct": 0.6699
+        },
+        {
+          "pair": "EURJPY=X",
+          "spot_rate": 176.035995,
+          "expected_rate": 183.773841,
+          "base_rate": 0.045,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.2105
+        },
+        {
+          "pair": "EURCHF=X",
+          "spot_rate": 0.93084,
+          "expected_rate": 0.958353,
+          "base_rate": 0.045,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.8708
+        },
+        {
+          "pair": "GBPJPY=X",
+          "spot_rate": 202.705002,
+          "expected_rate": 213.032629,
+          "base_rate": 0.052,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.8479
+        },
+        {
+          "pair": "GBPCHF=X",
+          "spot_rate": 1.07185,
+          "expected_rate": 1.110922,
+          "base_rate": 0.052,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.5171
+        },
+        {
+          "pair": "AUDJPY=X",
+          "spot_rate": 99.459999,
+          "expected_rate": 103.633146,
+          "base_rate": 0.043,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.0268
+        },
+        {
+          "pair": "CADJPY=X",
+          "spot_rate": 107.790001,
+          "expected_rate": 113.066435,
+          "base_rate": 0.05,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.6667
+        },
+        {
+          "pair": "CHFJPY=X",
+          "spot_rate": 189.09697,
+          "expected_rate": 191.741682,
+          "base_rate": 0.015,
+          "quote_rate": 0.001,
+          "deviation_pct": -1.3793
+        },
+        {
+          "pair": "EURAUD=X",
+          "spot_rate": 1.76973,
+          "expected_rate": 1.773124,
+          "base_rate": 0.045,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.1914
+        },
+        {
+          "pair": "EURCAD=X",
+          "spot_rate": 1.63289,
+          "expected_rate": 1.625114,
+          "base_rate": 0.045,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.4785
+        },
+        {
+          "pair": "AUDCAD=X",
+          "spot_rate": 0.92268,
+          "expected_rate": 0.916529,
+          "base_rate": 0.043,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.6711
+        },
+        {
+          "pair": "AUDCHF=X",
+          "spot_rate": 0.52593,
+          "expected_rate": 0.540438,
+          "base_rate": 0.043,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.6846
+        },
+        {
+          "pair": "CADCHF=X",
+          "spot_rate": 0.56993,
+          "expected_rate": 0.589583,
+          "base_rate": 0.05,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.3333
+        },
+        {
+          "pair": "GBPAUD=X",
+          "spot_rate": 2.03788,
+          "expected_rate": 2.055465,
+          "base_rate": 0.052,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.8555
+        },
+        {
+          "pair": "GBPCAD=X",
+          "spot_rate": 1.88046,
+          "expected_rate": 1.884042,
+          "base_rate": 0.052,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.1901
+        }
+      ],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 21,
+        "average_rate": 44.90123397963388,
+        "rate_std_dev": 74.0376084750315
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.853950023651123,
+          "date": "2025-10-07"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 150.33099365234375,
+          "date": "2025-10-07"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.741569995880127,
+          "date": "2025-10-07"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5113730430603027,
+          "date": "2025-10-07"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3946000337600708,
+          "date": "2025-10-07"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-08",
+      "currency_values": {
+        "AUD": 1.364208168378653,
+        "CAD": 1.4858596279142562,
+        "CHF": 2.596115283571301,
+        "EUR": 2.416030317818244,
+        "GBP": 2.782329167481625,
+        "JPY": 0.013635577232435447,
+        "USD": 2.073161723355234
+      },
+      "arbitrage_opportunities": [
+        {
+          "pair": "USDEUR=X",
+          "spot_rate": 0.85803,
+          "expected_rate": 0.866241,
+          "base_rate": 0.055,
+          "quote_rate": 0.045,
+          "deviation_pct": -0.9479
+        },
+        {
+          "pair": "USDJPY=X",
+          "spot_rate": 152.050995,
+          "expected_rate": 160.253546,
+          "base_rate": 0.055,
+          "quote_rate": 0.001,
+          "deviation_pct": -5.1185
+        },
+        {
+          "pair": "USDGBP=X",
+          "spot_rate": 0.7451,
+          "expected_rate": 0.747225,
+          "base_rate": 0.055,
+          "quote_rate": 0.052,
+          "deviation_pct": -0.2844
+        },
+        {
+          "pair": "USDAUD=X",
+          "spot_rate": 1.51964,
+          "expected_rate": 1.537124,
+          "base_rate": 0.055,
+          "quote_rate": 0.043,
+          "deviation_pct": -1.1374
+        },
+        {
+          "pair": "USDCAD=X",
+          "spot_rate": 1.39528,
+          "expected_rate": 1.401924,
+          "base_rate": 0.055,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.4739
+        },
+        {
+          "pair": "USDCHF=X",
+          "spot_rate": 0.79859,
+          "expected_rate": 0.830062,
+          "base_rate": 0.055,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.7915
+        },
+        {
+          "pair": "EURGBP=X",
+          "spot_rate": 0.8683,
+          "expected_rate": 0.862522,
+          "base_rate": 0.045,
+          "quote_rate": 0.052,
+          "deviation_pct": 0.6699
+        },
+        {
+          "pair": "EURJPY=X",
+          "spot_rate": 177.197006,
+          "expected_rate": 184.985886,
+          "base_rate": 0.045,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.2105
+        },
+        {
+          "pair": "EURCHF=X",
+          "spot_rate": 0.93065,
+          "expected_rate": 0.958157,
+          "base_rate": 0.045,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.8708
+        },
+        {
+          "pair": "GBPJPY=X",
+          "spot_rate": 204.057999,
+          "expected_rate": 214.45456,
+          "base_rate": 0.052,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.8479
+        },
+        {
+          "pair": "GBPCHF=X",
+          "spot_rate": 1.07171,
+          "expected_rate": 1.110777,
+          "base_rate": 0.052,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.5171
+        },
+        {
+          "pair": "AUDJPY=X",
+          "spot_rate": 100.045998,
+          "expected_rate": 104.243732,
+          "base_rate": 0.043,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.0268
+        },
+        {
+          "pair": "CADJPY=X",
+          "spot_rate": 108.966003,
+          "expected_rate": 114.300004,
+          "base_rate": 0.05,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.6667
+        },
+        {
+          "pair": "CHFJPY=X",
+          "spot_rate": 190.368591,
+          "expected_rate": 193.031089,
+          "base_rate": 0.015,
+          "quote_rate": 0.001,
+          "deviation_pct": -1.3793
+        },
+        {
+          "pair": "EURAUD=X",
+          "spot_rate": 1.7709,
+          "expected_rate": 1.774296,
+          "base_rate": 0.045,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.1914
+        },
+        {
+          "pair": "EURCAD=X",
+          "spot_rate": 1.62597,
+          "expected_rate": 1.618227,
+          "base_rate": 0.045,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.4785
+        },
+        {
+          "pair": "AUDCAD=X",
+          "spot_rate": 0.91805,
+          "expected_rate": 0.91193,
+          "base_rate": 0.043,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.6711
+        },
+        {
+          "pair": "AUDCHF=X",
+          "spot_rate": 0.52545,
+          "expected_rate": 0.539945,
+          "base_rate": 0.043,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.6846
+        },
+        {
+          "pair": "CADCHF=X",
+          "spot_rate": 0.57228,
+          "expected_rate": 0.592014,
+          "base_rate": 0.05,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.3333
+        },
+        {
+          "pair": "GBPAUD=X",
+          "spot_rate": 2.03938,
+          "expected_rate": 2.056978,
+          "base_rate": 0.052,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.8555
+        },
+        {
+          "pair": "GBPCAD=X",
+          "spot_rate": 1.87247,
+          "expected_rate": 1.876037,
+          "base_rate": 0.052,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.1901
+        }
+      ],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 21,
+        "average_rate": 45.247542486304326,
+        "rate_std_dev": 74.60249533725751
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8580300211906433,
+          "date": "2025-10-08"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 152.05099487304688,
+          "date": "2025-10-08"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7451000213623047,
+          "date": "2025-10-08"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5196399688720703,
+          "date": "2025-10-08"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3952800035476685,
+          "date": "2025-10-08"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-09",
+      "currency_values": {
+        "AUD": 1.3672305093758423,
+        "CAD": 1.487950781960283,
+        "CHF": 2.5906430951153485,
+        "EUR": 2.4147715502753475,
+        "GBP": 2.782516718010974,
+        "JPY": 0.013600398094314481,
+        "USD": 2.076331313791587
+      },
+      "arbitrage_opportunities": [
+        {
+          "pair": "USDEUR=X",
+          "spot_rate": 0.8597,
+          "expected_rate": 0.867927,
+          "base_rate": 0.055,
+          "quote_rate": 0.045,
+          "deviation_pct": -0.9479
+        },
+        {
+          "pair": "USDJPY=X",
+          "spot_rate": 152.679993,
+          "expected_rate": 160.916476,
+          "base_rate": 0.055,
+          "quote_rate": 0.001,
+          "deviation_pct": -5.1185
+        },
+        {
+          "pair": "USDGBP=X",
+          "spot_rate": 0.74619,
+          "expected_rate": 0.748318,
+          "base_rate": 0.055,
+          "quote_rate": 0.052,
+          "deviation_pct": -0.2844
+        },
+        {
+          "pair": "USDAUD=X",
+          "spot_rate": 1.518718,
+          "expected_rate": 1.536191,
+          "base_rate": 0.055,
+          "quote_rate": 0.043,
+          "deviation_pct": -1.1374
+        },
+        {
+          "pair": "USDCAD=X",
+          "spot_rate": 1.39546,
+          "expected_rate": 1.402105,
+          "base_rate": 0.055,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.4739
+        },
+        {
+          "pair": "USDCHF=X",
+          "spot_rate": 0.8015,
+          "expected_rate": 0.833086,
+          "base_rate": 0.055,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.7915
+        },
+        {
+          "pair": "EURGBP=X",
+          "spot_rate": 0.86779,
+          "expected_rate": 0.862016,
+          "base_rate": 0.045,
+          "quote_rate": 0.052,
+          "deviation_pct": 0.6699
+        },
+        {
+          "pair": "EURJPY=X",
+          "spot_rate": 177.554001,
+          "expected_rate": 185.358572,
+          "base_rate": 0.045,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.2105
+        },
+        {
+          "pair": "EURCHF=X",
+          "spot_rate": 0.93207,
+          "expected_rate": 0.959619,
+          "base_rate": 0.045,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.8708
+        },
+        {
+          "pair": "GBPJPY=X",
+          "spot_rate": 204.598007,
+          "expected_rate": 215.022081,
+          "base_rate": 0.052,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.8479
+        },
+        {
+          "pair": "GBPCHF=X",
+          "spot_rate": 1.07401,
+          "expected_rate": 1.113161,
+          "base_rate": 0.052,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.5171
+        },
+        {
+          "pair": "AUDJPY=X",
+          "spot_rate": 100.528,
+          "expected_rate": 104.745958,
+          "base_rate": 0.043,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.0268
+        },
+        {
+          "pair": "CADJPY=X",
+          "spot_rate": 109.404999,
+          "expected_rate": 114.760488,
+          "base_rate": 0.05,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.6667
+        },
+        {
+          "pair": "CHFJPY=X",
+          "spot_rate": 190.458542,
+          "expected_rate": 193.122298,
+          "base_rate": 0.015,
+          "quote_rate": 0.001,
+          "deviation_pct": -1.3793
+        },
+        {
+          "pair": "EURAUD=X",
+          "spot_rate": 1.7661,
+          "expected_rate": 1.769487,
+          "base_rate": 0.045,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.1914
+        },
+        {
+          "pair": "EURCAD=X",
+          "spot_rate": 1.62282,
+          "expected_rate": 1.615092,
+          "base_rate": 0.045,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.4785
+        },
+        {
+          "pair": "AUDCAD=X",
+          "spot_rate": 0.918828,
+          "expected_rate": 0.912702,
+          "base_rate": 0.043,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.6711
+        },
+        {
+          "pair": "AUDCHF=X",
+          "spot_rate": 0.527765,
+          "expected_rate": 0.542324,
+          "base_rate": 0.043,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.6846
+        },
+        {
+          "pair": "CADCHF=X",
+          "spot_rate": 0.57431,
+          "expected_rate": 0.594114,
+          "base_rate": 0.05,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.3333
+        },
+        {
+          "pair": "GBPAUD=X",
+          "spot_rate": 2.03506,
+          "expected_rate": 2.05262,
+          "base_rate": 0.052,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.8555
+        },
+        {
+          "pair": "GBPCAD=X",
+          "spot_rate": 1.87,
+          "expected_rate": 1.873562,
+          "base_rate": 0.052,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.1901
+        }
+      ],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 21,
+        "average_rate": 45.36827915906906,
+        "rate_std_dev": 74.78190016241747
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8597000241279602,
+          "date": "2025-10-09"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 152.67999267578125,
+          "date": "2025-10-09"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7461900115013123,
+          "date": "2025-10-09"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.5187180042266846,
+          "date": "2025-10-09"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.3954600095748901,
+          "date": "2025-10-09"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-10",
+      "currency_values": {
+        "AUD": 1.3678966345560217,
+        "CAD": 1.4872002362444723,
+        "CHF": 2.5862473033327356,
+        "EUR": 2.4113896899933414,
+        "GBP": 2.773722995162235,
+        "JPY": 0.013630175019798374,
+        "USD": 2.084852348309625
+      },
+      "arbitrage_opportunities": [
+        {
+          "pair": "USDEUR=X",
+          "spot_rate": 0.86457,
+          "expected_rate": 0.872843,
+          "base_rate": 0.055,
+          "quote_rate": 0.045,
+          "deviation_pct": -0.9479
+        },
+        {
+          "pair": "USDJPY=X",
+          "spot_rate": 152.964996,
+          "expected_rate": 161.216854,
+          "base_rate": 0.055,
+          "quote_rate": 0.001,
+          "deviation_pct": -5.1185
+        },
+        {
+          "pair": "USDGBP=X",
+          "spot_rate": 0.7516,
+          "expected_rate": 0.753743,
+          "base_rate": 0.055,
+          "quote_rate": 0.052,
+          "deviation_pct": -0.2844
+        },
+        {
+          "pair": "USDAUD=X",
+          "spot_rate": 1.52409,
+          "expected_rate": 1.541625,
+          "base_rate": 0.055,
+          "quote_rate": 0.043,
+          "deviation_pct": -1.1374
+        },
+        {
+          "pair": "USDCAD=X",
+          "spot_rate": 1.40188,
+          "expected_rate": 1.408556,
+          "base_rate": 0.055,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.4739
+        },
+        {
+          "pair": "USDCHF=X",
+          "spot_rate": 0.80617,
+          "expected_rate": 0.83794,
+          "base_rate": 0.055,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.7915
+        },
+        {
+          "pair": "EURGBP=X",
+          "spot_rate": 0.86933,
+          "expected_rate": 0.863545,
+          "base_rate": 0.045,
+          "quote_rate": 0.052,
+          "deviation_pct": 0.6699
+        },
+        {
+          "pair": "EURJPY=X",
+          "spot_rate": 176.936005,
+          "expected_rate": 184.713411,
+          "base_rate": 0.045,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.2105
+        },
+        {
+          "pair": "EURCHF=X",
+          "spot_rate": 0.93239,
+          "expected_rate": 0.959948,
+          "base_rate": 0.045,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.8708
+        },
+        {
+          "pair": "GBPJPY=X",
+          "spot_rate": 203.503998,
+          "expected_rate": 213.872333,
+          "base_rate": 0.052,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.8479
+        },
+        {
+          "pair": "GBPCHF=X",
+          "spot_rate": 1.07246,
+          "expected_rate": 1.111555,
+          "base_rate": 0.052,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.5171
+        },
+        {
+          "pair": "AUDJPY=X",
+          "spot_rate": 100.355003,
+          "expected_rate": 104.565703,
+          "base_rate": 0.043,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.0268
+        },
+        {
+          "pair": "CADJPY=X",
+          "spot_rate": 109.108002,
+          "expected_rate": 114.448953,
+          "base_rate": 0.05,
+          "quote_rate": 0.001,
+          "deviation_pct": -4.6667
+        },
+        {
+          "pair": "CHFJPY=X",
+          "spot_rate": 189.720001,
+          "expected_rate": 192.373428,
+          "base_rate": 0.015,
+          "quote_rate": 0.001,
+          "deviation_pct": -1.3793
+        },
+        {
+          "pair": "EURAUD=X",
+          "spot_rate": 1.76272,
+          "expected_rate": 1.7661,
+          "base_rate": 0.045,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.1914
+        },
+        {
+          "pair": "EURCAD=X",
+          "spot_rate": 1.6214,
+          "expected_rate": 1.613679,
+          "base_rate": 0.045,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.4785
+        },
+        {
+          "pair": "AUDCAD=X",
+          "spot_rate": 0.91971,
+          "expected_rate": 0.913579,
+          "base_rate": 0.043,
+          "quote_rate": 0.05,
+          "deviation_pct": 0.6711
+        },
+        {
+          "pair": "AUDCHF=X",
+          "spot_rate": 0.52888,
+          "expected_rate": 0.54347,
+          "base_rate": 0.043,
+          "quote_rate": 0.015,
+          "deviation_pct": -2.6846
+        },
+        {
+          "pair": "CADCHF=X",
+          "spot_rate": 0.57499,
+          "expected_rate": 0.594817,
+          "base_rate": 0.05,
+          "quote_rate": 0.015,
+          "deviation_pct": -3.3333
+        },
+        {
+          "pair": "GBPAUD=X",
+          "spot_rate": 2.02759,
+          "expected_rate": 2.045086,
+          "base_rate": 0.052,
+          "quote_rate": 0.043,
+          "deviation_pct": -0.8555
+        },
+        {
+          "pair": "GBPCAD=X",
+          "spot_rate": 1.865,
+          "expected_rate": 1.868552,
+          "base_rate": 0.052,
+          "quote_rate": 0.05,
+          "deviation_pct": -0.1901
+        }
+      ],
+      "summary_stats": {
+        "total_pairs": 21,
+        "currencies_covered": 7,
+        "opportunities_found": 21,
+        "average_rate": 45.2433707231567,
+        "rate_std_dev": 74.5404156846734
+      },
+      "raw_data_sample": [
+        {
+          "pair": "USDEUR=X",
+          "rate": 0.8645700216293335,
+          "date": "2025-10-10"
+        },
+        {
+          "pair": "USDJPY=X",
+          "rate": 152.96499633789062,
+          "date": "2025-10-10"
+        },
+        {
+          "pair": "USDGBP=X",
+          "rate": 0.7516000270843506,
+          "date": "2025-10-10"
+        },
+        {
+          "pair": "USDAUD=X",
+          "rate": 1.524090051651001,
+          "date": "2025-10-10"
+        },
+        {
+          "pair": "USDCAD=X",
+          "rate": 1.4018800258636475,
+          "date": "2025-10-10"
+        }
+      ]
     }
   ],
   "summary": {
-    "total_days_processed": 22,
-    "total_opportunities_found": 462,
+    "total_days_processed": 21,
+    "total_opportunities_found": 441,
     "currencies_tracked": [
       "AUD",
       "CAD",
@@ -4786,8 +4570,8 @@
       "USD"
     ],
     "date_range_processed": {
-      "start": "2025-09-02",
-      "end": "2025-10-01"
+      "start": "2025-09-12",
+      "end": "2025-10-10"
     }
   }
 }

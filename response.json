@@ -1,1 +1,1 @@
-{"statusCode": 200, "body": "{\"message\": \"Data processing completed successfully\", \"output_location\": \"s3://graph-arbitrage-processed-data-se/processed/historical/2025-10-02/analysis.json\", \"days_processed\": 22, \"total_opportunities\": 462}"}
+{"errorType":"Runtime.ExitError","errorMessage":"RequestId: dc5941b0-4999-42a6-ae7d-6ced68ea6705 Error: Runtime exited with error: exit status 1"}

@@ -105,7 +105,6 @@ def detect_arbitrage_opportunities(fx_rates_df, currency_values):
 
 
 def validate_fx_data(fx_rates_df):
-    """Check if all currency pairs exist (data integrity validation)."""
     currencies = set()
     for pair in fx_rates_df['pair']:
         pair_clean = pair.replace('=X', '')
@@ -126,7 +125,6 @@ def validate_fx_data(fx_rates_df):
 
 
 def detect_triangular_arbitrage(fx_rates_df):
-    """Detect 3-currency arbitrage cycles like USD→EUR→JPY→USD."""
     rates = {}
     for _, row in fx_rates_df.iterrows():
         pair_clean = row['pair'].replace('=X', '')
@@ -140,7 +138,7 @@ def detect_triangular_arbitrage(fx_rates_df):
     for a, b, c in itertools.permutations(currencies, 3):
         if (a, b) in rates and (b, c) in rates and (c, a) in rates:
             product = rates[(a, b)] * rates[(b, c)] * rates[(c, a)]
-            if product > 1.001:  # >0.1% profit threshold
+            if product > 1.001:
                 profit_pct = (product - 1) * 100
                 opportunities.append({
                     "cycle": f"{a}->{b}->{c}->{a}",
@@ -153,11 +151,9 @@ def detect_triangular_arbitrage(fx_rates_df):
                 })
 
     return opportunities
+
+
 def detect_interest_rate_arbitrage(fx_rates_df, interest_rates):
-    """
-    Detect interest-rate arbitrage opportunities based on covered interest-rate parity (CIP).
-    For each currency pair, compare actual rate vs theoretical rate implied by interest rates.
-    """
     opportunities = []
 
     for _, row in fx_rates_df.iterrows():
@@ -170,13 +166,10 @@ def detect_interest_rate_arbitrage(fx_rates_df, interest_rates):
                     base_rate = interest_rates[base]
                     quote_rate = interest_rates[quote]
                     spot_rate = row['rate']
-
-                    # Theoretical parity rate adjustment
                     expected_rate = spot_rate * (1 + base_rate) / (1 + quote_rate)
-
                     deviation_pct = (spot_rate - expected_rate) / expected_rate * 100
 
-                    if abs(deviation_pct) > 0.1:  # >0.1% difference threshold
+                    if abs(deviation_pct) > 0.1:
                         opportunities.append({
                             "pair": f"{base}{quote}=X",
                             "spot_rate": round(spot_rate, 6),
@@ -193,9 +186,7 @@ def detect_interest_rate_arbitrage(fx_rates_df, interest_rates):
     return opportunities
 
 
-
 def generate_summary_report(processed_days, data_validation):
-    """Generate compact summary report."""
     if not processed_days:
         return {"error": "No data processed"}
 
@@ -221,9 +212,7 @@ def generate_summary_report(processed_days, data_validation):
 
 
 def process_historical_data(historical_data):
-    """Process multiple days of historical data for GNN training"""
     processed_days = []
-
     first_pair = list(historical_data['fx_rates'].keys())[0]
     all_dates = historical_data['fx_rates'][first_pair]['dates']
 
@@ -318,6 +307,7 @@ def lambda_handler(event, context):
                 }
             }
 
+            # Save historical analysis
             processed_key = f"processed/historical/{date_str}/analysis.json"
             s3_client.put_object(
                 Bucket=PROCESSED_BUCKET,
@@ -326,7 +316,19 @@ def lambda_handler(event, context):
                 ContentType='application/json'
             )
 
-            # Also generate summary report safely
+            # 🆕 NEW: Save last processed day into daily folder
+            if processed_days:
+                last_day = processed_days[-1]
+                daily_key = f"processed/daily/{last_day['date']}/analysis.json"
+                s3_client.put_object(
+                    Bucket=PROCESSED_BUCKET,
+                    Key=daily_key,
+                    Body=json.dumps(last_day, indent=2),
+                    ContentType="application/json"
+                )
+                logger.info(f"Daily snapshot saved to s3://{PROCESSED_BUCKET}/{daily_key}")
+
+            # Generate summary report
             try:
                 if processed_days:
                     last_day_df = pd.DataFrame(processed_days[-1]['raw_data_sample'])
@@ -343,50 +345,13 @@ def lambda_handler(event, context):
             except Exception as e:
                 logger.error(f"Report generation failed: {str(e)}")
 
-        else:
-            # Legacy CSV mode
-            response = s3_client.get_object(Bucket=bucket, Key=key)
-            csv_content = response['Body'].read().decode('utf-8')
-            fx_rates_df = pd.read_csv(io.StringIO(csv_content))
-            fx_rates_df.columns = [c.strip().lower() for c in fx_rates_df.columns]
-
-            filename = key.split('/')[-1]
-            date_str = filename.split('_')[0]
-
-            currency_values = calculate_currency_values(fx_rates_df)
-            arbitrage_ops = detect_arbitrage_opportunities(fx_rates_df, currency_values)
-
-            processed_data = {
-                'processing_timestamp': datetime.utcnow().isoformat(),
-                'source_file': key,
-                'date': date_str,
-                'currency_values': currency_values,
-                'arbitrage_opportunities': arbitrage_ops,
-                'summary_stats': {
-                    'total_pairs': len(fx_rates_df),
-                    'currencies_covered': len(currency_values),
-                    'opportunities_found': len(arbitrage_ops),
-                    'average_rate': float(fx_rates_df['rate'].mean()),
-                    'rate_std_dev': float(fx_rates_df['rate'].std())
-                },
-                'raw_data_sample': fx_rates_df.head().to_dict('records')
-            }
-
-            processed_key = f"processed/{date_str}/analysis.json"
-            s3_client.put_object(
-                Bucket=PROCESSED_BUCKET,
-                Key=processed_key,
-                Body=json.dumps(processed_data, indent=2),
-                ContentType='application/json'
-            )
-
         return {
             'statusCode': 200,
             'body': json.dumps({
                 'message': 'Data processing completed successfully',
                 'output_location': f"s3://{PROCESSED_BUCKET}/{processed_key}",
-                'days_processed': len(processed_days) if key.endswith('.json') else 1,
-                'total_opportunities': processed_data['summary']['total_opportunities_found'] if key.endswith('.json') else len(arbitrage_ops)
+                'days_processed': len(processed_days),
+                'total_opportunities': processed_data['summary']['total_opportunities_found']
             })
         }
 
