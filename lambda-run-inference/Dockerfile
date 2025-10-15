@@ -1,14 +1,17 @@
-FROM 852815611756.dkr.ecr.us-east-1.amazonaws.com/graph-arbitrage-trainer:latest
+# Use the AWS Lambda Python 3.10 base image
+FROM public.ecr.aws/lambda/python:3.10
 
-# Copy inference-specific code
-COPY src/ /app/inference/
+# Set working directory
+WORKDIR /var/task
 
-# Set Python path to include inference code
-ENV PYTHONPATH=/app:/app/inference
+# Copy function code
+COPY src/ /var/task/
 
-# Add __init__.py so inference is a package
-RUN touch /app/inference/__init__.py
+# Install dependencies if present
+# (You can add a requirements.txt in src/ if needed)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt || true
 
-# Set Lambda handler
-CMD ["inference.lambda_function.lambda_handler"]
+# Command for Lambda to run
+CMD ["lambda_function.lambda_handler"]
 

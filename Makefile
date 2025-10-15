@@ -112,89 +112,66 @@ deploy-process: build-process
 # Run Inference Lambda (ECR-based)
 # ------------------------------
 
-# Build inference Lambda container image
+# ------------------------------
+# Run Inference Lambda (ECR-based, standalone)
+# ------------------------------
+
+INFERENCE_FUNCTION_NAME := run-inference
+INFERENCE_ECR_REPO := $(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/graph-arbitrage-inference
+
 build-inference:
 	@echo "=== Building Run Inference Lambda container image ==="
-	docker build -t graph-arbitrage-inference $(PROJECT_ROOT)/lambda-run-inference
+	# Only build if requirements changed or image doesn't exist
+	if [ "$$(find $(PROJECT_ROOT)/lambda-run-inference/requirements.txt -newer /tmp/last_inference_build 2>/dev/null)" ] || \
+	   [ ! "$$(docker images -q graph-arbitrage-inference:latest 2>/dev/null)" ]; then \
+		docker build -t graph-arbitrage-inference $(PROJECT_ROOT)/lambda-run-inference; \
+		touch /tmp/last_inference_build; \
+	fi
+	@echo "✅ Build complete!"
+deploy-inference: build-inference
+	@echo "=== Deploying Run Inference Lambda as standalone container image ==="
 
-# Deploy inference Lambda as container image
-# Quick deploy inference (without build, uses latest image)
-# ------------------------------
-# Deploy Run Inference Lambda (wrapper over trainer image)
-# ------------------------------
-deploy-inference:
-	@echo "=== Building Run Inference Lambda wrapper ==="
 	# Ensure ECR repository exists
 	aws ecr describe-repositories --repository-names graph-arbitrage-inference || \
 		aws ecr create-repository --repository-name graph-arbitrage-inference
-
-	# Build wrapper image on top of trainer
-	docker build -t lambda-run-inference ./lambda-run-inference
 
 	# Authenticate Docker to ECR
 	aws ecr get-login-password --region $(AWS_REGION) | docker login \
 		--username AWS --password-stdin $(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com
 
-	# Tag image with timestamp
-	TIMESTAMP=$$(date +%s) && \
-	docker tag lambda-run-inference:latest $(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/graph-arbitrage-inference:$$TIMESTAMP && \
-	docker push $(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/graph-arbitrage-inference:$$TIMESTAMP
+	# Generate timestamp once and reuse it
+	$(eval TIMESTAMP := $(shell date +%s))
+	
+	# Tag and push image
+	docker tag graph-arbitrage-inference:latest $(INFERENCE_ECR_REPO):$(TIMESTAMP)
+	docker push $(INFERENCE_ECR_REPO):$(TIMESTAMP)
 
 	# Create or update Lambda
 	if aws lambda get-function --function-name $(INFERENCE_FUNCTION_NAME) 2>/dev/null; then \
 		echo "Updating existing Lambda function..."; \
 		aws lambda update-function-code \
 			--function-name $(INFERENCE_FUNCTION_NAME) \
-			--image-uri $(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/graph-arbitrage-inference:$$TIMESTAMP; \
+			--image-uri $(INFERENCE_ECR_REPO):$(TIMESTAMP); \
 	else \
 		echo "Creating new Lambda function..."; \
 		aws lambda create-function \
 			--function-name $(INFERENCE_FUNCTION_NAME) \
 			--package-type Image \
 			--role $(LAMBDA_ROLE_ARN) \
-			--code ImageUri=$(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/graph-arbitrage-inference:$$TIMESTAMP \
+			--code ImageUri=$(INFERENCE_ECR_REPO):$(TIMESTAMP) \
 			--timeout 300 \
-			--memory-size 2048 \
-			--environment Variables={"PYTORCH_ENABLE_MPS_FALLBACK"="1"}; \
+			--memory-size 2048; \
 	fi
-	@echo "=== Run Inference Deployment complete! ==="
 
-deploy-inference-quick:
-	@echo "=== Quick Deploy Run Inference Lambda ==="
-	TIMESTAMP=$$(date +%s) && \
-	if aws lambda get-function --function-name $(INFERENCE_FUNCTION_NAME) 2>/dev/null; then \
-		echo "Updating existing function..."; \
-		aws lambda update-function-code \
-			--function-name $(INFERENCE_FUNCTION_NAME) \
-			--image-uri 852815611756.dkr.ecr.us-east-1.amazonaws.com/graph-arbitrage-inference:latest; \
-	else \
-		echo "Function doesn't exist. Use 'make deploy-inference' instead."; \
-		exit 1; \
-	fi
-	@echo "=== Quick Deployment complete! ==="
-
-# Deploy run-inference Lambda using existing trainer image
-deploy-inference-from-trainer:
-	@echo "=== Deploy Run Inference Lambda from existing trainer image ==="
-	@if aws lambda get-function --function-name $(INFERENCE_FUNCTION_NAME) 2>/dev/null; then \
-		echo "Updating existing Lambda function..."; \
-		aws lambda update-function-code \
-			--function-name $(INFERENCE_FUNCTION_NAME) \
-			--image-uri $(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/graph-arbitrage-trainer:latest; \
-	else \
-		echo "Creating new Lambda function pointing to trainer image..."; \
-		aws lambda create-function \
-			--function-name $(INFERENCE_FUNCTION_NAME) \
-			--package-type Image \
-			--role $(LAMBDA_ROLE_ARN) \
-			--code ImageUri=$(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/graph-arbitrage-trainer:latest \
-			--timeout 300 \
-			--memory-size 2048 \
-			--environment Variables={"PYTORCH_ENABLE_MPS_FALLBACK"="1"}; \
-	fi
-	@echo "=== Deployment from trainer image complete! ==="
-
-# Deploy inference Lambda as container image
+	@echo "✅ Run Inference Deployment complete!"
+test-inference:
+	@echo "=== Testing Run Inference Lambda ==="
+	aws lambda invoke \
+		--function-name $(INFERENCE_FUNCTION_NAME) \
+		--payload '{}' \
+		response.json
+	@echo "Lambda response:"
+	cat response.json
 
 # Test Targets
 # ------------------------------
@@ -218,20 +195,6 @@ test-fetch:
 		response.json
 	@echo "Lambda response:"
 	cat response.json
-
-# Test inference Lambda
-test-inference:
-	@echo "=== Testing Run Inference Lambda ==="
-	aws lambda invoke \
-		--function-name run-inference \
-		--payload '{}' \
-		response.json
-	@echo "Lambda response:"
-	cat response.json
-	
-	@echo "=== Checking DynamoDB for signals ==="
-	aws dynamodb scan --table-name fx-signals --max-items 5 --query "Items[*].{timestamp:timestamp, signal_id:signal_id, pair:signal_data.pair, action:signal_data.action, confidence:signal_data.confidence}"
-
 # Test full pipeline
 test-pipeline: test-fetch
 	@sleep 10  # Wait for processing

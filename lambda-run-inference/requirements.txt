@@ -1,0 +1,6 @@
+boto3
+torch
+torch-geometric
+pandas
+numpy
+

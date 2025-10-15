@@ -6,6 +6,10 @@ import numpy as np
 from datetime import datetime
 import sys
 import os
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch_geometric.nn import GCNConv, global_mean_pool
 
 # Add container paths
 sys.path.append('/app')
@@ -25,32 +29,62 @@ SIGNALS_TABLE = 'fx-signals'
 # Your actual model path
 MODEL_PATH = "v2/arbitrage_gnn_v2.pt"
 
+class ArbitrageGNNv2(nn.Module):
+    def __init__(self, node_dim=2, hidden_dim=64):
+        super().__init__()
+        self.conv1 = GCNConv(node_dim, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        self.fc_class = nn.Sequential(
+            nn.Linear(hidden_dim, 32), nn.ReLU(), nn.Linear(32, 1), nn.Sigmoid()
+        )
+        self.fc_reg = nn.Sequential(
+            nn.Linear(hidden_dim, 32), nn.ReLU(), nn.Linear(32, 1)
+        )
+
+    def forward(self, x, edge_index, batch):
+        x = torch.relu(self.conv1(x, edge_index))
+        x = torch.relu(self.conv2(x, edge_index))
+        pooled = global_mean_pool(x, batch)
+        return self.fc_class(pooled), self.fc_reg(pooled)
+
+
 def load_trained_model():
-    """
-    Load the trained GNN model from S3
-    """
     try:
         import torch
+        import collections
+        
+        logger.info("🚀 DEBUG: Inside load_trained_model - NEW VERSION")
         
         local_path = f'/tmp/{os.path.basename(MODEL_PATH)}'
-        
-        # Download from S3 if not exists locally
+
         if not os.path.exists(local_path):
             logger.info(f"Downloading model from S3: {MODEL_PATH}")
             s3_client.download_file(MODELS_BUCKET, MODEL_PATH, local_path)
-            logger.info(f"Model downloaded successfully: {local_path}")
+
+        # DEBUG: Check what we're loading
+        logger.info("DEBUG: About to load model file...")
+        loaded_obj = torch.load(local_path, map_location=torch.device('cpu'))
+        logger.info(f"DEBUG: Loaded object type: {type(loaded_obj)}")
+        logger.info(f"DEBUG: Is it OrderedDict? {isinstance(loaded_obj, collections.OrderedDict)}")
         
-        # Load the model
-        model = torch.load(local_path, map_location=torch.device('cpu'))
+        # DEBUG: Show the fix attempt
+        logger.info("DEBUG: Creating ArbitrageGNNv2 instance...")
+        model = ArbitrageGNNv2()
+        logger.info("DEBUG: Model instance created successfully")
+        
+        logger.info("DEBUG: Loading state_dict into model...")
+        model.load_state_dict(loaded_obj)
+        logger.info("DEBUG: State_dict loaded successfully")
+        
+        logger.info("DEBUG: Calling model.eval()...")
         model.eval()
-        
-        logger.info(f"Model loaded successfully: {type(model)}")
-        logger.info(f"Model parameters: {sum(p.numel() for p in model.parameters())}")
+        logger.info("DEBUG: model.eval() succeeded!")
         
         return model
-        
+
     except Exception as e:
-        logger.error(f"Error loading model {MODEL_PATH}: {str(e)}")
+        logger.error(f"DEBUG: Error in load_trained_model: {str(e)}")
+        logger.error(f"DEBUG: Error type: {type(e)}")
         raise
 
 def prepare_inference_data(processed_data):
@@ -58,6 +92,7 @@ def prepare_inference_data(processed_data):
     Prepare data for GNN inference
     This needs to match how your model was trained!
     """
+
     try:
         currency_values = processed_data['currency_values']
         currencies = sorted(list(currency_values.keys()))  # Important: consistent order

@@ -1,1 +1,1 @@
-{"errorType":"Runtime.ExitError","errorMessage":"RequestId: dc5941b0-4999-42a6-ae7d-6ced68ea6705 Error: Runtime exited with error: exit status 1"}
+{"errorMessage": "Unable to import module 'lambda_function': No module named 'pandas'", "errorType": "Runtime.ImportModuleError", "requestId": "", "stackTrace": []}
