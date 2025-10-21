@@ -1,3 +1,14 @@
+import sys
+import traceback
+
+try:
+    import torch
+    import torch_geometric
+    print("✅ Torch and Torch Geometric imported successfully", file=sys.stderr)
+except Exception as e:
+    print("🔥 Torch import failed:", e, file=sys.stderr)
+    traceback.print_exc()
+
 import boto3
 import json
 import logging
@@ -10,6 +21,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch_geometric.nn import GCNConv, global_mean_pool
+
+if not os.environ.get("AWS_DEFAULT_REGION"):
+    os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
 
 # Add container paths
 sys.path.append('/app')
@@ -149,55 +163,40 @@ def prepare_inference_data(processed_data):
     except Exception as e:
         logger.error(f"Error preparing inference data: {str(e)}")
         raise
-
 def run_gnn_inference(model, inference_data):
     """
-    Run GNN inference
+    Run GNN inference with debugging
     """
     try:
         import torch
         
-        # Prepare the data in the format your model expects
-        # This depends on your model's forward method signature
-        if hasattr(model, 'forward'):
-            with torch.no_grad():
-                # Try different calling conventions
-                try:
-                    # If model expects Data object
-                    from torch_geometric.data import Data
-                    data = Data(
-                        x=inference_data['x'],
-                        edge_index=inference_data['edge_index'],
-                        edge_attr=inference_data['edge_attr']
-                    )
-                    predictions = model(data)
-                except:
-                    # If model expects separate tensors
-                    try:
-                        predictions = model(
-                            inference_data['x'],
-                            inference_data['edge_index'],
-                            inference_data['edge_attr']
-                        )
-                    except:
-                        # Fallback: just pass the data dict
-                        predictions = model(inference_data)
-        else:
-            # If it's a different type of model
-            predictions = model.predict(inference_data)
-        
-        # Convert predictions to numpy for easier handling
-        if isinstance(predictions, torch.Tensor):
-            predictions = predictions.numpy()
-        
-        logger.info(f"Inference completed. Predictions type: {type(predictions)}")
-        if hasattr(predictions, 'shape'):
-            logger.info(f"Predictions shape: {predictions.shape}")
-        
+        logger.info("DEBUG: Starting inference")
+        logger.info(f"DEBUG: inference_data keys: {inference_data.keys()}")
+        logger.info(f"DEBUG: x shape: {inference_data['x'].shape}")
+        logger.info(f"DEBUG: edge_index shape: {inference_data['edge_index'].shape}")
+
+        with torch.no_grad():
+            # Build batch tensor
+            batch = torch.zeros(inference_data['x'].size(0), dtype=torch.long)
+            logger.info(f"DEBUG: batch shape: {batch.shape}")
+
+            # Test the model call
+            logger.info("DEBUG: About to call model...")
+            class_out, reg_out = model(
+                inference_data['x'],
+                inference_data['edge_index'], 
+                batch
+            )
+            logger.info("DEBUG: Model call successful!")
+
+            predictions = reg_out.squeeze().numpy()
+            logger.info(f"DEBUG: predictions shape: {predictions.shape}")
+
         return predictions
-        
+
     except Exception as e:
         logger.error(f"Error during inference: {str(e)}")
+        logger.error(f"DEBUG: Model signature: {model.__class__.__name__}.forward(x, edge_index, batch)")
         raise
 
 def generate_trading_signals(predictions, inference_data, processed_data):
