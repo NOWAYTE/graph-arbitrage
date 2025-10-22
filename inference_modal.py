@@ -6,7 +6,6 @@ import modal
 
 app = modal.App("graph-arbitrage-inference")
 
-# NOTE: Modal's Image builds a container for you. Adjust pip packages/versions if needed.
 image = (
     modal.Image.debian_slim()
     .pip_install(
@@ -18,24 +17,12 @@ image = (
     )
 )
 
-# Use the secret name you created in Modal for AWS credentials.
-# Create it with: modal secret create aws-creds
 secrets = [modal.Secret.from_name("aws-creds")]
 
 
 @app.function(image=image, secrets=secrets, timeout=900)
 def run_inference_modal():
-    """
-    Modal function: run the full inference pipeline:
-      - pick latest processed data from S3 (or today's)
-      - download model from S3
-      - prepare graph tensors
-      - run GNN inference
-      - generate trading signals
-      - save signals to DynamoDB and an inference JSON to S3
-    Returns a small JSON summary dict.
-    """
-    # Imports inside function ensure Modal builds image successfully and any native libs load at runtime
+    from decimal import Decimal
     import io
     import traceback
     import boto3
@@ -44,27 +31,20 @@ def run_inference_modal():
     import torch.nn as nn
     from torch_geometric.nn import GCNConv, global_mean_pool
 
-    # Basic logging
     logger = logging.getLogger("modal_inference")
     logger.setLevel(logging.INFO)
 
-    # Ensure AWS region fallback
     os.environ.setdefault("AWS_DEFAULT_REGION", "us-east-1")
     aws_region = os.environ.get("AWS_DEFAULT_REGION", "us-east-1")
 
-    # AWS clients
     s3_client = boto3.client("s3", region_name=aws_region)
     dynamodb = boto3.resource("dynamodb", region_name=aws_region)
 
-    # Config (keep same names as your AWS setup)
     PROCESSED_BUCKET = "graph-arbitrage-processed-data-se"
     MODELS_BUCKET = "graph-arbitrage-models"
     SIGNALS_TABLE = "fx-signals"
-    MODEL_PATH = "v2/arbitrage_gnn_v2.pt"  # S3 key under models bucket (as in your AWS listing)
+    MODEL_PATH = "v2/arbitrage_gnn_v2.pt"
 
-    # --------------------------
-    # Model definition (same as your Lambda)
-    # --------------------------
     class ArbitrageGNNv2(nn.Module):
         def __init__(self, node_dim=2, hidden_dim=64):
             super().__init__()
@@ -83,11 +63,7 @@ def run_inference_modal():
             pooled = global_mean_pool(x, batch)
             return self.fc_class(pooled), self.fc_reg(pooled)
 
-    # --------------------------
-    # Helpers (kept local to function)
-    # --------------------------
     def download_processed_data_for_latest_day():
-        """Returns (today_str, processed_data)"""
         today = (datetime.utcnow() - timedelta(days=1)).strftime("%Y-%m-%d")
         processed_key = f"processed/historical/{today}/analysis.json"
         try:
@@ -114,59 +90,60 @@ def run_inference_modal():
             s3_client.download_file(MODELS_BUCKET, MODEL_PATH, local_path)
             logger.info(f"Model downloaded to {local_path}")
         model = ArbitrageGNNv2()
-        # torch.load may be either state_dict or full model — handle both
         loaded = torch.load(local_path, map_location=torch.device("cpu"))
         import collections
         if isinstance(loaded, collections.OrderedDict) or isinstance(loaded, dict):
-            # assume state_dict
             model.load_state_dict(loaded)
         else:
-            # maybe full model object
             try:
-                # if it's an nn.Module
                 model = loaded
             except Exception:
-                # fallback: try state_dict
                 model = ArbitrageGNNv2()
                 model.load_state_dict(loaded.state_dict())
         model.eval()
         return model
 
     def prepare_inference_data(processed_data):
-        """
-        Converts processed data into graph tensors suitable for the GNN.
-        Ensures each node has exactly 2 features (node_dim=2).
-        """
-        currency_values = processed_data["currency_values"]
+        import torch
+        import numpy as np
+
+        if "processed_days" not in processed_data or not processed_data["processed_days"]:
+            raise KeyError("No processed_days found in processed data")
+
+        latest_day = processed_data["processed_days"][-1]
+        currency_values = latest_day.get("currency_values", {})
+
+        if not currency_values:
+            raise KeyError("currency_values not found in the latest processed day")
+
         currencies = sorted(list(currency_values.keys()))
-        logger.info(f"Preparing data for currencies: {currencies}")
+        logger.info(f"Preparing inference data for {len(currencies)} currencies: {currencies}")
 
         node_features = []
         for currency in currencies:
-            features = [currency_values[currency]]  # base feature
-
-            # Get temporal features (if available)
-            temporal_data = processed_data.get("temporal_features", {}).get(currency, [])
-
-            # Pad or truncate to have exactly 1 temporal feature
-            if len(temporal_data) >= 1:
-                features.append(temporal_data[0])
+            value = currency_values[currency]
+            if isinstance(value, dict):
+                features = [float(v) for v in value.values()]
             else:
-                features.append(0.0)  # padding
-
+                features = [float(value)]
+            if len(features) < 2:
+                features.append(0.0)
+            elif len(features) > 2:
+                features = features[:2]
             node_features.append(features)
 
-        # Build edge index and edge attributes (all pairs)
         edge_index = []
         edge_attributes = []
+
         for i in range(len(currencies)):
             for j in range(len(currencies)):
                 if i != j:
                     edge_index.append([i, j])
-                    rate = currency_values[currencies[i]] / currency_values[currencies[j]]
+                    rate = currency_values[currencies[i]]["mid"] / currency_values[currencies[j]]["mid"] \
+                        if isinstance(currency_values[currencies[i]], dict) else \
+                        currency_values[currencies[i]] / currency_values[currencies[j]]
                     edge_attributes.append([rate])
 
-        # Convert to PyTorch tensors
         node_tensor = torch.tensor(node_features, dtype=torch.float32)
         edge_tensor = torch.tensor(edge_index, dtype=torch.long).t().contiguous()
         edge_attr_tensor = torch.tensor(edge_attributes, dtype=torch.float32)
@@ -178,26 +155,23 @@ def run_inference_modal():
             "currencies": currencies,
         }
 
-        logger.info(f"Prepared {len(currencies)} currencies, {len(edge_index)} edges")
+        logger.info(f"Prepared {len(currencies)} currencies and {len(edge_index)} edges for inference.")
         return inference_data
 
     def run_gnn_inference(model, inference_data):
         with torch.no_grad():
             batch = torch.zeros(inference_data["x"].size(0), dtype=torch.long)
             class_out, reg_out = model(inference_data["x"], inference_data["edge_index"], batch)
-
             preds = reg_out.squeeze()
             if preds.ndim == 0:
                 preds = preds.unsqueeze(0)
             preds = preds.cpu().numpy()
-
         return preds
 
     def generate_trading_signals(predictions, inference_data, processed_data):
         signals = []
         currencies = inference_data["currencies"]
-        currency_values = processed_data["currency_values"]
-
+        currency_values = processed_data["processed_days"][-1]["currency_values"]
         edge_idx = 0
         signals_generated = 0
         for i, curr1 in enumerate(currencies):
@@ -209,7 +183,6 @@ def run_inference_modal():
                         pred_value = pred_value.item()
                     elif isinstance(pred_value, (list, np.ndarray)):
                         pred_value = float(pred_value[0]) if len(pred_value) > 0 else 0.0
-
                     confidence = abs(pred_value)
                     if confidence > 0.005:
                         signal = {
@@ -229,6 +202,18 @@ def run_inference_modal():
         logger.info(f"Generated {signals_generated} trading signals out of {edge_idx} pairs")
         return signals
 
+
+    def convert_floats_to_decimal(obj):
+        """Recursively convert all float values to decimal"""
+        if isinstance(obj, list):
+            return [convert_floats_to_decimal(i) for i in obj]
+        elif isinstance(obj, dict):
+            return {k: convert_floats_to_decimal(v) for k, v in obj.items()}
+        elif isinstance(obj, float):
+            return Decimal(str(obj))
+        else:
+            return obj
+
     def save_signals_to_dynamodb(signals, date_str):
         if len(signals) == 0:
             logger.info("No signals to save to DynamoDB")
@@ -236,20 +221,19 @@ def run_inference_modal():
         table = dynamodb.Table(SIGNALS_TABLE)
         with table.batch_writer() as batch:
             for signal in signals:
+
+                signal_decimal = convert_floats_to_decimal(signal)
                 item = {
                     "timestamp": int(datetime.utcnow().timestamp()),
                     "signal_id": signal["signal_id"],
                     "date": date_str,
-                    "signal_data": signal,
+                    "signal_data": signal_decimal,
                     "created_at": datetime.utcnow().isoformat(),
                     "model_version": signal.get("model_version", "arbitrage_gnn_v2"),
                 }
                 batch.put_item(Item=item)
         logger.info(f"Saved {len(signals)} signals to DynamoDB table: {SIGNALS_TABLE}")
 
-    # --------------------------
-    # Main pipeline
-    # --------------------------
     try:
         date_processed, processed_data = download_processed_data_for_latest_day()
         model = load_trained_model()
@@ -282,3 +266,10 @@ def run_inference_modal():
         logger.error(f"Modal inference failed: {e}\n{tb}")
         return {"status": "error", "message": str(e), "traceback": tb}
 
+
+
+
+if __name__ == "__main__":
+    with app.run():
+        result = run_inference_modal.remote()
+        print("Inference result", result)
